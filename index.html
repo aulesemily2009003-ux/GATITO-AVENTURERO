@@ -2,51 +2,53 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
 <title>TURBO CAR</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
     user-select:none;
     -webkit-user-select:none;
-    -webkit-tap-highlight-color:transparent;
+    touch-action:none;
 }
 
 html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-    font-family:Arial,sans-serif;
-    background:#050812;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050914;
     color:white;
 }
 
 button{
-    font-family:Arial,sans-serif;
-    border:0;
+    font-family:inherit;
+    cursor:pointer;
 }
 
-.hidden{
-    display:none!important;
-}
-
-/* ======================================================
+/* =====================================================
    INTRO
-====================================================== */
+===================================================== */
 
 #intro{
     position:fixed;
     inset:0;
     overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:
         linear-gradient(
-            #06142f 0%,
-            #143d76 42%,
-            #ff884b 76%,
-            #080b12 100%
+            180deg,
+            #08152f 0%,
+            #174b83 38%,
+            #f47b48 68%,
+            #101722 100%
         );
 }
 
@@ -54,46 +56,108 @@ button{
     position:absolute;
     width:170px;
     height:170px;
-    left:50%;
-    top:13%;
-    transform:translateX(-50%);
     border-radius:50%;
-    background:#ffd86b;
+    background:#ffe48c;
+    top:12%;
+    left:50%;
+    transform:translateX(-50%);
     box-shadow:
-        0 0 40px #ffd86b,
-        0 0 110px #ff793c;
+        0 0 35px #ffe08b,
+        0 0 100px #ff8c45;
 }
 
-.mountain{
+.cloud{
     position:absolute;
-    bottom:23%;
+    width:220px;
+    height:45px;
+    background:#ffffff25;
+    border-radius:50px;
+    filter:blur(3px);
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+    background:#ffffff25;
+    border-radius:50%;
+}
+
+.cloud:before{
+    width:80px;
+    height:80px;
+    left:35px;
+    bottom:0;
+}
+
+.cloud:after{
+    width:65px;
+    height:65px;
+    right:35px;
+    bottom:0;
+}
+
+.cloud1{
+    top:20%;
+    left:5%;
+}
+
+.cloud2{
+    top:28%;
+    right:3%;
+    transform:scale(.7);
+}
+
+.mountains{
+    position:absolute;
+    bottom:26%;
     width:100%;
-    height:40%;
-    background:#182943;
+    height:42%;
+    background:#203a50;
     clip-path:polygon(
-        0 75%,
-        10% 42%,
-        20% 68%,
-        32% 22%,
-        43% 67%,
-        57% 25%,
-        69% 65%,
-        82% 34%,
-        92% 60%,
+        0 76%,
+        8% 43%,
+        16% 69%,
+        27% 20%,
+        39% 67%,
+        51% 30%,
+        63% 70%,
+        76% 26%,
+        87% 65%,
         100% 38%,
         100% 100%,
         0 100%
     );
 }
 
-.roadIntro{
+.mountains2{
     position:absolute;
-    bottom:-10%;
+    bottom:22%;
+    width:100%;
+    height:35%;
+    background:#162b39;
+    clip-path:polygon(
+        0 70%,
+        15% 45%,
+        29% 68%,
+        44% 30%,
+        58% 72%,
+        72% 38%,
+        86% 67%,
+        100% 42%,
+        100% 100%,
+        0 100%
+    );
+}
+
+.introRoad{
+    position:absolute;
+    bottom:-8%;
     left:50%;
     transform:translateX(-50%);
     width:125%;
-    height:55%;
-    background:#242931;
+    height:48%;
+    background:#292e35;
     clip-path:polygon(
         42% 0,
         58% 0,
@@ -102,11 +166,12 @@ button{
     );
 }
 
-.roadIntro:after{
+.introRoad:after{
     content:"";
     position:absolute;
     left:50%;
-    width:7px;
+    top:0;
+    width:8px;
     height:100%;
     background:repeating-linear-gradient(
         to bottom,
@@ -116,208 +181,222 @@ button{
 }
 
 .introContent{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    position:relative;
+    z-index:5;
     text-align:center;
 }
 
 .introCar{
     font-size:100px;
-    filter:drop-shadow(0 15px 15px #000);
-    animation:carFloat 1s infinite alternate;
+    filter:drop-shadow(0 18px 15px #000);
+    animation:floatCar .8s infinite alternate;
 }
 
-@keyframes carFloat{
+@keyframes floatCar{
+    from{transform:translateY(0);}
     to{transform:translateY(-12px);}
 }
 
 .logo{
-    font-size:clamp(48px,12vw,115px);
+    font-size:clamp(48px,11vw,115px);
     font-weight:1000;
     letter-spacing:7px;
     background:linear-gradient(
-        #fff,
-        #ffe000 45%,
-        #ff3500
+        #ffffff,
+        #ffe500 45%,
+        #ff3200
     );
     -webkit-background-clip:text;
     color:transparent;
-    filter:drop-shadow(0 8px 8px #000);
+    text-shadow:0 10px 25px #000;
 }
 
-.subtitle{
-    letter-spacing:6px;
-    color:#eaf0ff;
-    font-size:14px;
+.introSubtitle{
+    margin-top:5px;
+    letter-spacing:5px;
+    color:#e7efff;
 }
 
-.start{
-    margin-top:35px;
-    padding:18px 42px;
+.mainButton{
+    margin-top:30px;
+    padding:17px 42px;
+    border:0;
     border-radius:50px;
     color:white;
+    font-size:17px;
     font-weight:bold;
-    font-size:18px;
     background:linear-gradient(
         135deg,
-        #ff321d,
-        #ff9d00
+        #ff341e,
+        #ffad00
     );
-    box-shadow:0 10px 35px #0009;
+    box-shadow:
+        0 10px 35px #0009,
+        inset 0 1px 0 #fff5;
 }
 
-/* ======================================================
+/* =====================================================
    MENU
-====================================================== */
+===================================================== */
 
 #menu{
     position:fixed;
     inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
     overflow:hidden;
     background:
         radial-gradient(
-            circle at 50% 0%,
-            #3158a0,
-            #0a1227 55%,
-            #03050b
+            circle at 50% -10%,
+            #416fc0,
+            #111e3b 45%,
+            #050914 100%
         );
+}
+
+.menuSun{
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:#ffcc63;
+    border-radius:50%;
+    top:-150px;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:.35;
+    filter:blur(3px);
 }
 
 .city{
     position:absolute;
     bottom:0;
     width:100%;
-    height:38%;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #111a2c 0 45px,
-            #192641 45px 90px
-        );
-    clip-path:polygon(
-        0 55%,
-        6% 25%,
-        12% 48%,
-        20% 17%,
-        28% 51%,
-        36% 25%,
-        45% 52%,
-        54% 13%,
-        64% 47%,
-        73% 22%,
-        82% 53%,
-        90% 18%,
-        100% 47%,
-        100% 100%,
-        0 100%
-    );
+    height:40%;
+    display:flex;
+    align-items:flex-end;
+    gap:7px;
+    padding:0 10px;
+    opacity:.85;
 }
+
+.building{
+    width:clamp(30px,6vw,70px);
+    background:#101b30;
+    border-top:3px solid #243c60;
+}
+
+.building:nth-child(1){height:35%}
+.building:nth-child(2){height:60%}
+.building:nth-child(3){height:42%}
+.building:nth-child(4){height:75%}
+.building:nth-child(5){height:50%}
+.building:nth-child(6){height:85%}
+.building:nth-child(7){height:43%}
+.building:nth-child(8){height:68%}
+.building:nth-child(9){height:52%}
+.building:nth-child(10){height:80%}
+.building:nth-child(11){height:45%}
+.building:nth-child(12){height:65%}
 
 .menuContent{
     position:relative;
-    z-index:2;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    z-index:5;
+    width:min(650px,92%);
+    text-align:center;
 }
 
 .menuTitle{
-    font-size:clamp(50px,11vw,105px);
+    font-size:clamp(50px,9vw,90px);
     font-weight:1000;
     letter-spacing:5px;
     background:linear-gradient(
-        white,
-        #ffe000 45%,
+        #fff,
+        #ffe300,
         #ff3900
     );
     -webkit-background-clip:text;
     color:transparent;
 }
 
-.menuSubtitle{
-    color:#afc0e7;
-    letter-spacing:3px;
-    margin-bottom:25px;
-}
-
-.mode{
-    width:min(600px,94%);
+.menuCard{
+    margin-top:20px;
     padding:25px;
     border-radius:25px;
-    background:#09101fe6;
+    background:#07101ee8;
     border:1px solid #ffffff25;
-    box-shadow:0 20px 60px #0009;
-    text-align:center;
-    backdrop-filter:blur(15px);
+    box-shadow:0 25px 70px #0009;
+    backdrop-filter:blur(12px);
 }
 
-.mode h2{
-    margin-bottom:18px;
-}
-
-.playerSelect{
+.playerButtons{
     display:flex;
     justify-content:center;
+    flex-wrap:wrap;
     gap:10px;
-    margin-bottom:20px;
+    margin:18px 0;
 }
 
-.playerBtn{
-    padding:12px 22px;
+.playerButtons button{
+    min-width:75px;
+    padding:13px 18px;
+    border:1px solid #ffffff20;
     border-radius:12px;
+    background:#162238;
     color:white;
-    background:#ffffff12;
-    border:1px solid #ffffff22;
+    font-weight:bold;
 }
 
-.playerBtn.active{
+.playerButtons button.active{
+    background:#ffd000;
     color:#111;
-    background:#ffd400;
+    border-color:#ffe875;
 }
 
 .startRace{
-    padding:16px 35px;
+    margin-top:12px;
+    padding:16px 34px;
+    border:0;
     border-radius:14px;
     color:white;
     font-weight:bold;
     font-size:17px;
     background:linear-gradient(
         135deg,
-        #ff3b22,
-        #ff9b00
+        #ff351f,
+        #ff9d00
     );
 }
 
-.info{
-    color:#7f8eae;
+.controlsInfo{
+    margin-top:18px;
+    color:#9caed0;
     font-size:12px;
-    margin-top:15px;
+    line-height:1.7;
 }
 
-/* ======================================================
-   JUEGO
-====================================================== */
+/* =====================================================
+   GAME
+===================================================== */
 
 #game{
     position:fixed;
     inset:0;
+    display:none;
     overflow:hidden;
-    background:#76a957;
+    background:#6eaa4d;
 }
 
 #canvas{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
-    display:block;
 }
 
-/* HUD */
+/* =====================================================
+ HUD
+===================================================== */
 
 .hud{
     position:absolute;
@@ -327,406 +406,376 @@ button{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:7px;
-    z-index:20;
+    z-index:30;
 }
 
-.hudPlayer{
-    padding:9px 6px;
-    border-radius:11px;
-    background:#050b16dd;
-    border:1px solid #ffffff20;
+.hudBox{
+    background:#07101ddd;
+    border:1px solid #ffffff18;
+    border-radius:12px;
+    padding:7px;
     text-align:center;
-    font-size:12px;
+    font-size:11px;
+    box-shadow:0 6px 20px #0005;
+}
+
+.hudBox.blue{border-bottom:3px solid #168cff}
+.hudBox.red{border-bottom:3px solid #ff3838}
+.hudBox.green{border-bottom:3px solid #24d96d}
+.hudBox.yellow{border-bottom:3px solid #ffd000}
+
+.position{
+    font-size:17px;
     font-weight:bold;
 }
 
-.p1{border-bottom:3px solid #1590ff;}
-.p2{border-bottom:3px solid #ff3535;}
-.p3{border-bottom:3px solid #25d96b;}
-.p4{border-bottom:3px solid #ffd21c;}
-
-.position{
-    font-size:16px;
+.speed{
+    color:#b7c6df;
 }
 
-/* ======================================================
-   MINIMAPA GRANDE
-====================================================== */
+/* =====================================================
+ MINIMAPA
+===================================================== */
 
-#map{
+#minimap{
     position:absolute;
-    top:75px;
+    top:78px;
     right:14px;
-    width:185px;
-    height:250px;
-    border-radius:18px;
-    background:#07101be8;
-    border:1px solid #ffffff35;
-    box-shadow:0 10px 35px #0008;
-    overflow:hidden;
+    width:190px;
+    height:240px;
+    border-radius:20px;
+    background:#06101ce8;
+    border:1px solid #ffffff30;
+    box-shadow:0 12px 35px #0008;
     z-index:25;
 }
 
-#mapTitle{
-    position:absolute;
-    top:8px;
-    left:0;
-    right:0;
+#minimapTitle{
     text-align:center;
-    font-size:11px;
+    font-size:10px;
     letter-spacing:2px;
-    color:#aab8d7;
-    z-index:4;
+    color:#aebbd5;
+    padding-top:9px;
 }
 
-#track{
+.miniTrack{
     position:absolute;
     left:50%;
-    top:25px;
-    width:125px;
-    height:205px;
+    top:34px;
+    width:120px;
+    height:190px;
     transform:translateX(-50%);
-}
-
-.mapOuter{
-    position:absolute;
-    inset:0;
-    border:25px solid #303842;
+    border:25px solid #3b444f;
     border-radius:45% 55% 48% 52%;
-    transform:rotate(-8deg);
+    box-shadow:
+        0 0 0 2px #ffffff22;
 }
 
-.mapInner{
+.miniTrack:after{
+    content:"";
     position:absolute;
-    inset:24px;
-    border:4px dashed #f1f1f1;
+    inset:-7px;
+    border:2px dashed #ffffffaa;
     border-radius:45% 55% 48% 52%;
 }
 
-.mapDot{
+.dot{
     position:absolute;
     width:13px;
     height:13px;
-    border-radius:50%;
     transform:translate(-50%,-50%);
+    border-radius:50%;
     border:2px solid white;
     z-index:10;
 }
 
-#dot1{background:#168cff;}
-#dot2{background:#ff3535;}
-#dot3{background:#23d66b;}
-#dot4{background:#ffd21c;}
+.dot1{background:#168cff}
+.dot2{background:#ff3838}
+.dot3{background:#24d96d}
+.dot4{background:#ffd000}
 
-.legend{
-    position:absolute;
-    bottom:7px;
-    left:8px;
-    right:8px;
-    display:flex;
-    justify-content:space-around;
-    font-size:9px;
-    color:#aab4ca;
-}
-
-/* ======================================================
-   PROGRESO
-====================================================== */
-
-.progress{
-    position:absolute;
-    left:50%;
-    top:58px;
-    transform:translateX(-50%);
-    width:min(400px,45%);
-    height:10px;
-    background:#050812bb;
-    border-radius:20px;
-    z-index:20;
-    overflow:hidden;
-}
-
-.progressFinish{
-    position:absolute;
-    right:0;
-    width:4px;
-    height:100%;
-    background:white;
-}
-
-.progressDot{
-    position:absolute;
-    top:0;
-    width:8px;
-    height:100%;
-}
-
-#prog1{background:#168cff;}
-#prog2{background:#ff3535;}
-#prog3{background:#23d66b;}
-#prog4{background:#ffd21c;}
-
-/* ======================================================
-   CUENTA
-====================================================== */
+/* =====================================================
+ COUNTDOWN
+===================================================== */
 
 #countdown{
     position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:40;
     font-size:110px;
     font-weight:1000;
-    z-index:60;
-    pointer-events:none;
-    text-shadow:0 10px 30px #000;
+    text-shadow:0 10px 35px #000;
 }
 
-/* ======================================================
-   CONTROLES CELULAR
-====================================================== */
+/* =====================================================
+ MOBILE CONTROLS
+===================================================== */
 
 .mobileControls{
+    display:none;
     position:absolute;
-    bottom:12px;
     left:12px;
     right:12px;
-    display:none;
+    bottom:12px;
+    z-index:50;
     justify-content:space-between;
-    z-index:40;
+    align-items:flex-end;
 }
 
-.wheelArea{
-    width:150px;
-    height:150px;
-}
-
-.wheel{
-    width:135px;
-    height:135px;
-    margin:7px;
-    border:13px solid #dce2e9;
+.steeringWheel{
+    width:140px;
+    height:140px;
     border-radius:50%;
-    background:#16191f;
-    position:relative;
+    border:14px solid #e0e5eb;
+    background:#191d23;
     box-shadow:
-        0 10px 25px #0009,
+        0 12px 25px #0009,
         inset 0 0 25px #000;
-    touch-action:none;
+    position:relative;
 }
 
-.wheel:before{
+.steeringWheel:before{
     content:"";
     position:absolute;
     left:50%;
     top:50%;
-    width:80px;
+    width:85px;
     height:11px;
     transform:translate(-50%,-50%);
-    background:#dce2e9;
     border-radius:10px;
+    background:#e0e5eb;
 }
 
-.wheel:after{
+.steeringWheel:after{
     content:"";
     position:absolute;
     left:50%;
     top:50%;
     width:11px;
-    height:80px;
+    height:85px;
     transform:translate(-50%,-50%);
-    background:#dce2e9;
     border-radius:10px;
+    background:#e0e5eb;
 }
 
 .wheelCenter{
     position:absolute;
     left:50%;
     top:50%;
-    width:28px;
-    height:28px;
+    width:30px;
+    height:30px;
     transform:translate(-50%,-50%);
+    background:#ed3434;
     border-radius:50%;
-    background:#ed3030;
-    z-index:5;
+    z-index:2;
 }
 
 .pedals{
     display:flex;
     flex-direction:column;
-    gap:9px;
+    gap:10px;
 }
 
 .pedal{
-    width:75px;
+    width:80px;
     height:65px;
-    border-radius:18px;
+    border:0;
+    border-radius:17px;
     color:white;
     font-size:25px;
     font-weight:bold;
     box-shadow:0 8px 20px #0009;
-    touch-action:none;
 }
 
 .gas{
-    background:linear-gradient(#26df65,#078b39);
+    background:linear-gradient(#27df66,#07883a);
 }
 
 .brake{
-    background:linear-gradient(#ff5151,#9f0000);
+    background:linear-gradient(#ff5555,#9b0000);
 }
 
-/* ======================================================
-   RESULTADOS
-====================================================== */
+/* =====================================================
+ FINISH
+===================================================== */
 
-#results{
-    position:fixed;
+#finish{
+    position:absolute;
     inset:0;
-    display:flex;
-    justify-content:center;
+    display:none;
     align-items:center;
-    background:
-        radial-gradient(
-            circle,
-            #29478d,
-            #070b15
-        );
+    justify-content:center;
+    background:#050914e8;
+    z-index:100;
 }
 
-.resultBox{
+.finishBox{
     width:min(600px,92%);
     padding:30px;
-    background:#101827ee;
-    border:1px solid #ffffff20;
     border-radius:25px;
-    box-shadow:0 20px 60px #0009;
+    background:#101a2bed;
+    border:1px solid #ffffff20;
+    box-shadow:0 20px 70px #000;
     text-align:center;
 }
 
-.resultBox h1{
-    font-size:42px;
+.finishBox h1{
+    font-size:45px;
     margin-bottom:20px;
 }
 
-.resultRow{
+.result{
     display:flex;
     justify-content:space-between;
     padding:14px;
     margin:7px 0;
-    background:#ffffff0b;
+    background:#ffffff09;
     border-radius:10px;
 }
 
-.winner{
-    color:#ffd400;
-    font-weight:bold;
+.result:first-child{
+    color:#ffd000;
+    border:1px solid #ffd00055;
 }
 
-.resultButton{
-    margin-top:12px;
+.finishButton{
+    margin-top:15px;
     padding:14px 25px;
-    border-radius:12px;
+    border:0;
+    border-radius:11px;
+    background:#ff6c00;
     color:white;
     font-weight:bold;
-    background:linear-gradient(
-        135deg,
-        #ff3d24,
-        #ff9b00
-    );
 }
 
 @media(max-width:700px){
 
     .hud{
-        grid-template-columns:repeat(4,1fr);
-        top:7px;
+        top:5px;
+        gap:4px;
     }
 
-    .hudPlayer{
-        font-size:9px;
-        padding:6px 2px;
+    .hudBox{
+        padding:5px 2px;
+        font-size:8px;
     }
 
     .position{
         font-size:13px;
     }
 
-    .progress{
-        top:48px;
-        width:40%;
-    }
-
-    #map{
-        width:120px;
+    #minimap{
+        width:125px;
         height:165px;
-        top:75px;
+        top:68px;
         right:7px;
     }
 
-    #track{
-        width:80px;
-        height:125px;
-        top:22px;
-    }
-
-    .mapOuter{
-        border-width:16px;
-    }
-
-    .mapInner{
-        inset:16px;
+    .miniTrack{
+        width:78px;
+        height:120px;
+        top:30px;
+        border-width:17px;
     }
 
     .mobileControls{
         display:flex;
     }
 
+    .steeringWheel{
+        width:115px;
+        height:115px;
+    }
+
+    .steeringWheel:before{
+        width:70px;
+    }
+
+    .steeringWheel:after{
+        height:70px;
+    }
+
+    .menuCard{
+        padding:20px 14px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     INTRO
-====================================================== -->
 
-<section id="intro">
+<!-- =====================================================
+ INTRO
+===================================================== -->
+
+<div id="intro">
 
     <div class="sun"></div>
-    <div class="mountain"></div>
-    <div class="roadIntro"></div>
+
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="mountains"></div>
+    <div class="mountains2"></div>
+
+    <div class="introRoad"></div>
 
     <div class="introContent">
 
-        <div class="introCar">🏎️</div>
+        <div class="introCar">
+            🏎️
+        </div>
 
         <div class="logo">
             TURBO CAR
         </div>
 
-        <div class="subtitle">
-            4 PILOTOS • 1 CIRCUITO • 1 CAMPEÓN
+        <div class="introSubtitle">
+            STREET RACING • 4 PILOTOS
         </div>
 
-        <button class="start" onclick="showMenu()">
-            ENTRAR AL CIRCUITO
+        <button
+            class="mainButton"
+            onclick="showMenu()">
+
+            ▶ CONTINUAR
+
         </button>
 
     </div>
 
-</section>
+</div>
 
 
-<!-- ======================================================
-     MENU
-====================================================== -->
+<!-- =====================================================
+ MENU
+===================================================== -->
 
-<section id="menu" class="hidden">
+<div id="menu">
 
-    <div class="city"></div>
+    <div class="menuSun"></div>
+
+    <div class="city">
+
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+
+    </div>
 
     <div class="menuContent">
 
@@ -734,34 +783,32 @@ button{
             TURBO CAR
         </div>
 
-        <div class="menuSubtitle">
-            STREET RACING
-        </div>
+        <div class="menuCard">
 
-        <div class="mode">
+            <h2>
+                🏁 PREPARA LA CARRERA
+            </h2>
 
-            <h2>🏁 CONFIGURA LA CARRERA</h2>
+            <div class="playerButtons">
 
-            <div class="playerSelect">
-
-                <button class="playerBtn"
-                    onclick="selectPlayers(1)">
+                <button onclick="setPlayers(1)">
                     1 JUGADOR
                 </button>
 
-                <button class="playerBtn"
-                    onclick="selectPlayers(2)">
-                    2
+                <button onclick="setPlayers(2)">
+                    2 JUGADORES
                 </button>
 
-                <button class="playerBtn"
-                    onclick="selectPlayers(3)">
-                    3
+                <button onclick="setPlayers(3)">
+                    3 JUGADORES
                 </button>
 
-                <button class="playerBtn active"
-                    onclick="selectPlayers(4)">
-                    4
+                <button
+                    class="active"
+                    onclick="setPlayers(4)">
+
+                    4 JUGADORES
+
                 </button>
 
             </div>
@@ -770,143 +817,75 @@ button{
                 class="startRace"
                 onclick="startGame()">
 
-                🏎️ INICIAR CARRERA
+                🏎️ COMENZAR CARRERA
 
             </button>
 
-            <div class="info">
-                Hasta 4 jugadores en el mismo dispositivo.
-                Cada piloto tiene su propio carril.
+            <div class="controlsInfo">
+
+                🔵 J1: W A S D<br>
+                🔴 J2: Flechas<br>
+                🟢 J3: I J K L<br>
+                🟡 J4: T F G H
+
             </div>
 
         </div>
 
     </div>
 
-</section>
+</div>
 
 
-<!-- ======================================================
-     JUEGO
-====================================================== -->
+<!-- =====================================================
+ GAME
+===================================================== -->
 
-<section id="game" class="hidden">
+<div id="game">
 
     <canvas id="canvas"></canvas>
 
 
-    <!-- HUD -->
-
     <div class="hud">
 
-        <div class="hudPlayer p1">
+        <div class="hudBox blue">
             🔵 J1
-            <div class="position" id="pos1">1º</div>
-            <div>
+            <div id="pos1" class="position">
+                1º
+            </div>
+            <div class="speed">
                 <span id="speed1">0</span> km/h
             </div>
         </div>
 
-        <div class="hudPlayer p2">
+        <div class="hudBox red">
             🔴 J2
-            <div class="position" id="pos2">2º</div>
-            <div>
+            <div id="pos2" class="position">
+                2º
+            </div>
+            <div class="speed">
                 <span id="speed2">0</span> km/h
             </div>
         </div>
 
-        <div class="hudPlayer p3">
+        <div class="hudBox green">
             🟢 J3
-            <div class="position" id="pos3">3º</div>
-            <div>
+            <div id="pos3" class="position">
+                3º
+            </div>
+            <div class="speed">
                 <span id="speed3">0</span> km/h
             </div>
         </div>
 
-        <div class="hudPlayer p4">
+        <div class="hudBox yellow">
             🟡 J4
-            <div class="position" id="pos4">4º</div>
-            <div>
+            <div id="pos4" class="position">
+                4º
+            </div>
+            <div class="speed">
                 <span id="speed4">0</span> km/h
             </div>
-        </div>
-
-    </div>
-
-
-    <!-- PROGRESO -->
-
-    <div class="progress">
-
-        <div
-            id="prog1"
-            class="progressDot"
-            style="left:0%">
-        </div>
-
-        <div
-            id="prog2"
-            class="progressDot"
-            style="left:0%">
-        </div>
-
-        <div
-            id="prog3"
-            class="progressDot"
-            style="left:0%">
-        </div>
-
-        <div
-            id="prog4"
-            class="progressDot"
-            style="left:0%">
-        </div>
-
-        <div class="progressFinish"></div>
-
-    </div>
-
-
-    <!-- MAPA -->
-
-    <div id="map">
-
-        <div id="mapTitle">
-            CIRCUITO
-        </div>
-
-        <div id="track">
-
-            <div class="mapOuter"></div>
-            <div class="mapInner"></div>
-
-            <div
-                id="dot1"
-                class="mapDot">
-            </div>
-
-            <div
-                id="dot2"
-                class="mapDot">
-            </div>
-
-            <div
-                id="dot3"
-                class="mapDot">
-            </div>
-
-            <div
-                id="dot4"
-                class="mapDot">
-            </div>
-
-        </div>
-
-        <div class="legend">
-            🔵 J1
-            🔴 J2
-            🟢 J3
-            🟡 J4
         </div>
 
     </div>
@@ -915,19 +894,48 @@ button{
     <div id="countdown"></div>
 
 
-    <!-- CONTROLES CELULAR -->
+    <!-- MINIMAPA -->
+
+    <div id="minimap">
+
+        <div id="minimapTitle">
+            CIRCUITO
+        </div>
+
+        <div class="miniTrack"></div>
+
+        <div
+            id="dot1"
+            class="dot dot1">
+        </div>
+
+        <div
+            id="dot2"
+            class="dot dot2">
+        </div>
+
+        <div
+            id="dot3"
+            class="dot dot3">
+        </div>
+
+        <div
+            id="dot4"
+            class="dot dot4">
+        </div>
+
+    </div>
+
+
+    <!-- MOBILE -->
 
     <div class="mobileControls">
 
-        <div class="wheelArea">
+        <div
+            id="wheel"
+            class="steeringWheel">
 
-            <div
-                id="wheel"
-                class="wheel">
-
-                <div class="wheelCenter"></div>
-
-            </div>
+            <div class="wheelCenter"></div>
 
         </div>
 
@@ -936,62 +944,64 @@ button{
             <button
                 id="gas"
                 class="pedal gas">
+
                 ▲
+
             </button>
 
             <button
                 id="brake"
                 class="pedal brake">
+
                 ▼
+
             </button>
 
         </div>
 
     </div>
 
-</section>
 
+    <!-- FINAL -->
 
-<!-- ======================================================
-     RESULTADOS
-====================================================== -->
+    <div id="finish">
 
-<section id="results" class="hidden">
+        <div class="finishBox">
 
-    <div class="resultBox">
+            <h1>
+                🏆 META
+            </h1>
 
-        <h1>🏆 RESULTADOS</h1>
+            <div id="results"></div>
 
-        <div id="resultList"></div>
+            <button
+                class="finishButton"
+                onclick="startGame()">
 
-        <button
-            class="resultButton"
-            onclick="startGame()">
+                🔄 OTRA CARRERA
 
-            🔄 OTRA CARRERA
+            </button>
 
-        </button>
+            <button
+                class="finishButton"
+                onclick="showMenu()">
 
-        <br>
+                MENÚ
 
-        <button
-            class="resultButton"
-            onclick="backMenu()">
+            </button>
 
-            MENÚ
-
-        </button>
+        </div>
 
     </div>
 
-</section>
+</div>
 
 
 <script>
 
-/* ======================================================
-   CONFIGURACIÓN
-====================================================== */
+/* =====================================================
+ VARIABLES
+===================================================== */
 
 const canvas =
     document.getElementById("canvas");
@@ -999,60 +1009,111 @@ const canvas =
 const ctx =
     canvas.getContext("2d");
 
-let selectedPlayers=4;
+let players=4;
 
-let gameRunning=false;
+let running=false;
+
 let raceStarted=false;
-let finished=false;
 
-let keys={};
+let cars=[];
 
-let gas=false;
-let brake=false;
+const keys={};
 
-let steering=0;
-
-const TOTAL=8000;
+let lastTime=0;
 
 
-/* ======================================================
-   PISTA
-====================================================== */
+/* =====================================================
+ RESIZE
+===================================================== */
 
-const track=[];
+function resize(){
 
-for(let i=0;i<900;i++){
+    canvas.width=
+        window.innerWidth;
 
-    track.push({
+    canvas.height=
+        window.innerHeight;
 
-        x:
-            Math.sin(i*.027)*190+
-            Math.sin(i*.009)*330+
-            Math.sin(i*.075)*35,
+}
 
-        y:i*10
+window.addEventListener(
+    "resize",
+    resize
+);
 
-    });
+resize();
+
+
+/* =====================================================
+ MENÚ
+===================================================== */
+
+function showMenu(){
+
+    running=false;
+
+    document.getElementById(
+        "intro"
+    ).style.display="none";
+
+    document.getElementById(
+        "game"
+    ).style.display="none";
+
+    document.getElementById(
+        "menu"
+    ).style.display="flex";
+
+    document.getElementById(
+        "finish"
+    ).style.display="none";
 
 }
 
 
-/* ======================================================
-   AUTOS
-====================================================== */
+function setPlayers(n){
 
-let cars=[];
+    players=n;
+
+    document
+        .querySelectorAll(
+            ".playerButtons button"
+        )
+        .forEach(
+            (button,index)=>{
+
+                button.classList.toggle(
+                    "active",
+                    index===n-1
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+ CREAR AUTOS
+===================================================== */
 
 function createCars(){
 
+    cars=[];
+
     const colors=[
         "#168cff",
-        "#ff3535",
-        "#23d66b",
-        "#ffd21c"
+        "#ff3838",
+        "#24d96d",
+        "#ffd000"
     ];
 
-    cars=[];
+    const lanes=[
+        -180,
+        -60,
+        60,
+        180
+    ];
 
     for(let i=0;i<4;i++){
 
@@ -1060,18 +1121,11 @@ function createCars(){
 
             id:i,
 
-            progress:0,
+            x:lanes[i],
+
+            distance:0,
 
             speed:0,
-
-            maxSpeed:
-                10+
-                Math.random()*1.2,
-
-            acceleration:.20,
-
-            x:
-                [-165,-55,55,165][i],
 
             color:colors[i],
 
@@ -1084,364 +1138,380 @@ function createCars(){
 }
 
 
-/* ======================================================
-   PANTALLAS
-====================================================== */
-
-function hideScreens(){
-
-    document
-        .querySelectorAll(
-            "#intro,#menu,#game,#results"
-        )
-        .forEach(e=>
-            e.classList.add("hidden")
-        );
-
-}
-
-function showMenu(){
-
-    hideScreens();
-
-    document
-        .getElementById("menu")
-        .classList.remove("hidden");
-
-}
-
-function backMenu(){
-
-    gameRunning=false;
-
-    showMenu();
-
-}
-
-
-/* ======================================================
-   JUGADORES
-====================================================== */
-
-function selectPlayers(n){
-
-    selectedPlayers=n;
-
-    document
-        .querySelectorAll(".playerBtn")
-        .forEach((b,i)=>{
-
-            b.classList.toggle(
-                "active",
-                i===n-1
-            );
-
-        });
-
-}
-
-
-/* ======================================================
-   INICIO
-====================================================== */
-
-function resize(){
-
-    canvas.width=innerWidth;
-    canvas.height=innerHeight;
-
-}
-
-window.addEventListener(
-    "resize",
-    resize
-);
-
+/* =====================================================
+ INICIAR
+===================================================== */
 
 function startGame(){
 
-    hideScreens();
+    document.getElementById(
+        "intro"
+    ).style.display="none";
 
-    document
-        .getElementById("game")
-        .classList.remove("hidden");
+    document.getElementById(
+        "menu"
+    ).style.display="none";
+
+    document.getElementById(
+        "game"
+    ).style.display="block";
+
+    document.getElementById(
+        "finish"
+    ).style.display="none";
 
     resize();
 
     createCars();
 
-    finished=false;
+    running=true;
+
     raceStarted=false;
-    gameRunning=true;
 
-    countdown();
+    lastTime=performance.now();
 
-    requestAnimationFrame(loop);
+    startCountdown();
+
+    requestAnimationFrame(
+        gameLoop
+    );
 
 }
 
 
-/* ======================================================
-   CUENTA
-====================================================== */
+/* =====================================================
+ CUENTA
+===================================================== */
 
-function countdown(){
+function startCountdown(){
 
-    const box=
+    const counter=
         document.getElementById(
             "countdown"
         );
 
-    let n=3;
+    let number=3;
 
-    box.textContent=n;
+    counter.textContent=number;
 
     const timer=setInterval(()=>{
 
-        n--;
+        number--;
 
-        if(n>0){
+        if(number>0){
 
-            box.textContent=n;
+            counter.textContent=
+                number;
 
         }else{
 
-            box.textContent="¡YA!";
+            counter.textContent=
+                "¡YA!";
 
             raceStarted=true;
 
             setTimeout(()=>{
-                box.textContent="";
+                counter.textContent="";
             },700);
 
             clearInterval(timer);
 
         }
 
-    },1000);
+    },900);
 
 }
 
 
-/* ======================================================
-   TECLADO
-====================================================== */
+/* =====================================================
+ TECLADO
+===================================================== */
 
-document.addEventListener(
+window.addEventListener(
     "keydown",
-    e=>{
-        keys[e.key.toLowerCase()]=true;
-    }
+    event=>{
+
+        const key=
+            event.key.toLowerCase();
+
+        keys[key]=true;
+
+        if(
+            key==="arrowup" ||
+            key==="arrowdown" ||
+            key==="arrowleft" ||
+            key==="arrowright" ||
+            key===" "
+        ){
+
+            event.preventDefault();
+
+        }
+
+    },
+    {passive:false}
 );
 
-document.addEventListener(
+
+window.addEventListener(
     "keyup",
-    e=>{
-        keys[e.key.toLowerCase()]=false;
+    event=>{
+
+        keys[
+            event.key.toLowerCase()
+        ]=false;
+
     }
 );
 
 
-/*
-   J1:
-   W A S D
+/* =====================================================
+ FÍSICA
+===================================================== */
 
-   J2:
-   Flechas
-
-   J3:
-   I J K L
-
-   J4:
-   T F G H
-*/
-
-
-/* ======================================================
-   ACTUALIZAR AUTO
-====================================================== */
-
-function controlCar(
+function driveCar(
     car,
     accelerate,
-    reverse,
+    brake,
     left,
-    right
+    right,
+    dt
 ){
-
-    if(keys[accelerate]){
-
-        car.speed+=car.acceleration;
-
-    }else{
-
-        car.speed*=.975;
-
-    }
-
-    if(keys[reverse]){
-
-        car.speed-=.25;
-
-    }
-
-    car.speed=Math.max(
-        -2,
-        Math.min(
-            car.maxSpeed,
-            car.speed
-        )
-    );
-
-
-    if(car.speed>.2){
-
-        if(keys[left])
-            car.x-=.18*car.speed;
-
-        if(keys[right])
-            car.x+=.18*car.speed;
-
-    }
-
-
-    /*
-       El coche intenta volver
-       suavemente a su carril.
-    */
-
-    car.x*=.992;
-
-    car.progress+=
-        Math.max(0,car.speed)*.75;
-
-}
-
-
-/* ======================================================
-   ACTUALIZAR TODOS
-====================================================== */
-
-function updateCars(){
 
     if(!raceStarted)
         return;
 
 
-    if(selectedPlayers>=1){
+    const acceleration=0.014*dt;
 
-        controlCar(
-            cars[0],
-            "w",
-            "s",
-            "a",
-            "d"
-        );
+    const friction=0.008*dt;
 
-    }
+    const maxSpeed=0.72;
 
 
-    if(selectedPlayers>=2){
+    /*
+       ACELERAR
+    */
 
-        controlCar(
-            cars[1],
-            "arrowup",
-            "arrowdown",
-            "arrowleft",
-            "arrowright"
-        );
+    if(keys[accelerate]){
 
-    }
+        car.speed+=acceleration;
 
+    }else{
 
-    if(selectedPlayers>=3){
-
-        controlCar(
-            cars[2],
-            "i",
-            "k",
-            "j",
-            "l"
-        );
-
-    }
-
-
-    if(selectedPlayers>=4){
-
-        controlCar(
-            cars[3],
-            "t",
-            "g",
-            "f",
-            "h"
-        );
+        car.speed-=friction;
 
     }
 
 
     /*
-       Los jugadores que no participan
-       permanecen quietos.
+       FRENO
     */
 
-    for(let i=selectedPlayers;i<4;i++){
+    if(keys[brake]){
 
-        cars[i].speed=0;
+        car.speed-=0.035*dt;
 
     }
 
 
-    cars.forEach(car=>{
+    /*
+       LÍMITES
+    */
 
-        if(
-            car.progress>=TOTAL
-        ){
+    car.speed=Math.max(
+        0,
+        Math.min(
+            maxSpeed,
+            car.speed
+        )
+    );
 
-            car.progress=TOTAL;
 
-            car.finished=true;
+    /*
+       DIRECCIÓN
 
-        }
+       IMPORTANTE:
+       La dirección funciona
+       incluso a baja velocidad.
+    */
 
-    });
+    const steering=
+        0.42*
+        Math.max(
+            .35,
+            car.speed/maxSpeed
+        );
 
+
+    if(keys[left]){
+
+        car.x-=steering*dt;
+
+    }
+
+    if(keys[right]){
+
+        car.x+=steering*dt;
+
+    }
+
+
+    /*
+       Limitar a la autopista
+    */
+
+    car.x=Math.max(
+        -285,
+        Math.min(
+            285,
+            car.x
+        )
+    );
+
+
+    /*
+       AVANZAR
+    */
+
+    car.distance+=
+        car.speed*dt;
+
+
+    /*
+       META
+    */
 
     if(
-        cars
-        .slice(0,selectedPlayers)
-        .every(c=>c.finished)
+        car.distance>=9000
     ){
 
-        endRace();
+        car.distance=9000;
+
+        car.finished=true;
 
     }
 
 }
 
 
-/* ======================================================
-   CIELO
-====================================================== */
+/* =====================================================
+ ACTUALIZAR
+===================================================== */
 
-function drawSky(){
+function updateCars(dt){
 
-    const g=
-        ctx.createLinearGradient(
-            0,0,
-            0,canvas.height
+    driveCar(
+        cars[0],
+        "w",
+        "s",
+        "a",
+        "d",
+        dt
+    );
+
+
+    if(players>=2){
+
+        driveCar(
+            cars[1],
+            "arrowup",
+            "arrowdown",
+            "arrowleft",
+            "arrowright",
+            dt
         );
 
-    g.addColorStop(0,"#63bdf4");
-    g.addColorStop(.48,"#c7e9f4");
-    g.addColorStop(1,"#76aa56");
+    }
 
-    ctx.fillStyle=g;
+
+    if(players>=3){
+
+        driveCar(
+            cars[2],
+            "i",
+            "k",
+            "j",
+            "l",
+            dt
+        );
+
+    }
+
+
+    if(players>=4){
+
+        driveCar(
+            cars[3],
+            "t",
+            "g",
+            "f",
+            "h",
+            dt
+        );
+
+    }
+
+
+    /*
+       Comprobar llegada
+    */
+
+    if(
+        cars
+        .slice(0,players)
+        .some(car=>car.finished)
+    ){
+
+        finishRace();
+
+    }
+
+}
+
+
+/* =====================================================
+ PAISAJE
+===================================================== */
+
+function drawLandscape(){
+
+    const w=canvas.width;
+    const h=canvas.height;
+
+
+    /*
+       CIELO
+    */
+
+    const sky=
+        ctx.createLinearGradient(
+            0,0,
+            0,h
+        );
+
+    sky.addColorStop(
+        0,
+        "#48a8e8"
+    );
+
+    sky.addColorStop(
+        .48,
+        "#bfe8ef"
+    );
+
+    sky.addColorStop(
+        1,
+        "#79ae51"
+    );
+
+    ctx.fillStyle=sky;
 
     ctx.fillRect(
-        0,0,
-        canvas.width,
-        canvas.height
+        0,
+        0,
+        w,
+        h
     );
 
 
@@ -1449,14 +1519,14 @@ function drawSky(){
        SOL
     */
 
-    ctx.fillStyle="#ffe08a";
+    ctx.fillStyle="#ffe18b";
 
     ctx.beginPath();
 
     ctx.arc(
-        canvas.width*.77,
-        canvas.height*.18,
-        48,
+        w*.78,
+        h*.18,
+        50,
         0,
         Math.PI*2
     );
@@ -1468,37 +1538,37 @@ function drawSky(){
        MONTAÑAS
     */
 
-    ctx.fillStyle="#60875d";
+    ctx.fillStyle="#547d6a";
 
     ctx.beginPath();
 
     ctx.moveTo(
         0,
-        canvas.height*.43
+        h*.43
     );
 
     for(
         let x=0;
-        x<=canvas.width;
+        x<=w;
         x+=80
     ){
 
         ctx.lineTo(
             x,
-            canvas.height*.31+
-            Math.sin(x*.015)*60
+            h*.34+
+            Math.sin(x*.012)*45
         );
 
     }
 
     ctx.lineTo(
-        canvas.width,
-        canvas.height
+        w,
+        h
     );
 
     ctx.lineTo(
         0,
-        canvas.height
+        h
     );
 
     ctx.fill();
@@ -1508,37 +1578,37 @@ function drawSky(){
        MONTAÑAS LEJANAS
     */
 
-    ctx.fillStyle="#849b79";
+    ctx.fillStyle="#78966d";
 
     ctx.beginPath();
 
     ctx.moveTo(
         0,
-        canvas.height*.45
+        h*.48
     );
 
     for(
         let x=0;
-        x<=canvas.width;
-        x+=120
+        x<=w;
+        x+=100
     ){
 
         ctx.lineTo(
             x,
-            canvas.height*.37+
-            Math.sin(x*.009)*40
+            h*.39+
+            Math.sin(x*.018)*30
         );
 
     }
 
     ctx.lineTo(
-        canvas.width,
-        canvas.height
+        w,
+        h
     );
 
     ctx.lineTo(
         0,
-        canvas.height
+        h
     );
 
     ctx.fill();
@@ -1546,457 +1616,530 @@ function drawSky(){
 }
 
 
-/* ======================================================
-   ÁRBOL
-====================================================== */
+/* =====================================================
+ EDIFICIOS
+===================================================== */
 
-function drawTree(x,y,s){
+function drawBuildings(){
 
-    ctx.fillStyle="#553923";
+    const h=
+        canvas.height;
 
-    ctx.fillRect(
-        x-5*s,
-        y,
-        10*s,
-        35*s
-    );
-
-    ctx.fillStyle="#14582e";
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x,
-        y-12*s,
-        25*s,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-    ctx.fillStyle="#267a40";
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x-17*s,
-        y,
-        18*s,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x+17*s,
-        y,
-        18*s,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-}
-
-
-/* ======================================================
-   EDIFICIOS
-====================================================== */
-
-function drawBuilding(x,y,s){
-
-    ctx.fillStyle="#35435b";
-
-    ctx.fillRect(
-        x,
-        y,
-        60*s,
-        90*s
-    );
-
-    for(
-        let r=0;
-        r<5;
-        r++
-    ){
-
-        for(
-            let c=0;
-            c<3;
-            c++
-        ){
-
-            ctx.fillStyle=
-                r%2===0
-                ?"rgba(255,222,130,.9)"
-                :"rgba(150,210,255,.8)";
-
-            ctx.fillRect(
-                x+
-                9*s+
-                c*17*s,
-                y+
-                10*s+
-                r*16*s,
-                8*s,
-                10*s
-            );
-
-        }
-
-    }
-
-}
-
-
-/* ======================================================
-   PUENTE
-====================================================== */
-
-function drawBridge(y){
-
-    ctx.fillStyle="#495463";
-
-    ctx.fillRect(
-        0,
-        y,
-        canvas.width,
-        18
-    );
-
-    ctx.fillStyle="#303945";
-
-    ctx.fillRect(
-        0,
-        y+18,
-        canvas.width,
-        8
-    );
-
-    for(
-        let x=0;
-        x<canvas.width;
-        x+=70
-    ){
-
-        ctx.fillStyle="#252c36";
-
-        ctx.fillRect(
-            x,
-            y+26,
-            12,
-            80
-        );
-
-    }
-
-}
-
-
-/* ======================================================
-   CARRETERA
-====================================================== */
-
-function drawRoad(){
-
-    const horizon=
-        canvas.height*.29;
-
-    const center=
-        canvas.width/2;
+    const w=
+        canvas.width;
 
 
     for(
         let i=0;
-        i<38;
+        i<10;
         i++
     ){
 
-        const index=
-            Math.floor(
-                cars[0].progress/10
-            )+i;
+        const side=
+            i%2===0?-1:1;
 
-
-        if(index>=track.length-1)
-            continue;
-
-
-        const p=track[index];
-        const next=track[index+1];
-
-        const depth=i/38;
-
-        const perspective=
-            depth*depth;
+        const x=
+            w/2+
+            side*
+            (360+
+            (i%5)*75);
 
         const y=
-            horizon+
-            perspective*
-            (canvas.height-horizon);
+            h*.39;
 
-        const nextY=
-            horizon+
-            ((i+1)/38)*
-            ((i+1)/38)*
-            (canvas.height-horizon);
-
-
-        const roadWidth=
+        const width=
             45+
-            perspective*590;
+            (i%3)*18;
 
+        const height=
+            70+
+            (i%4)*30;
 
-        const cx=
-            center+
-            p.x*perspective;
-
-        const nx=
-            center+
-            next.x*
-            ((i+1)/38)*
-            ((i+1)/38);
-
-
-        /*
-           césped
-        */
 
         ctx.fillStyle=
             i%2===0
-            ?"#71a84f"
-            :"#6ba04b";
-
+            ?"#384b64"
+            :"#455872";
 
         ctx.fillRect(
-            0,
-            y,
-            canvas.width,
-            nextY-y+3
+            x,
+            y-height,
+            width,
+            height
         );
 
 
         /*
-           bordes rojos/blancos
+           Ventanas
         */
 
-        ctx.fillStyle=
-            i%2===0
-            ?"white"
-            :"#e33b35";
+        for(
+            let r=0;
+            r<4;
+            r++
+        ){
 
+            for(
+                let c=0;
+                c<2;
+                c++
+            ){
 
-        ctx.beginPath();
+                ctx.fillStyle=
+                    r%2===0
+                    ?"#ffe48b"
+                    :"#9bdcff";
 
-        ctx.moveTo(
-            cx-roadWidth/2-9,
-            y
-        );
-
-        ctx.lineTo(
-            cx-roadWidth/2+2,
-            y
-        );
-
-        ctx.lineTo(
-            nx-roadWidth/2+2,
-            nextY
-        );
-
-        ctx.lineTo(
-            nx-roadWidth/2-9,
-            nextY
-        );
-
-        ctx.fill();
-
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            cx+roadWidth/2-2,
-            y
-        );
-
-        ctx.lineTo(
-            cx+roadWidth/2+9,
-            y
-        );
-
-        ctx.lineTo(
-            nx+roadWidth/2+9,
-            nextY
-        );
-
-        ctx.lineTo(
-            nx+roadWidth/2-2,
-            nextY
-        );
-
-        ctx.fill();
-
-
-        /*
-           ASFALTO
-        */
-
-        ctx.fillStyle="#2c3037";
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            cx-roadWidth/2,
-            y
-        );
-
-        ctx.lineTo(
-            cx+roadWidth/2,
-            y
-        );
-
-        ctx.lineTo(
-            nx+roadWidth/2,
-            nextY
-        );
-
-        ctx.lineTo(
-            nx-roadWidth/2,
-            nextY
-        );
-
-        ctx.fill();
-
-
-        /*
-           cuatro carriles
-        */
-
-        ctx.strokeStyle=
-            "rgba(255,255,255,.65)";
-
-        ctx.lineWidth=
-            2+
-            perspective*3;
-
-
-        for(let lane=1;lane<4;lane++){
-
-            const offset=
-                -roadWidth/2+
-                roadWidth*(lane/4);
-
-            const nextOffset=
-                -roadWidth/2+
-                roadWidth*(lane/4);
-
-
-            if(i%2===0){
-
-                ctx.beginPath();
-
-                ctx.moveTo(
-                    cx+offset,
-                    y
+                ctx.fillRect(
+                    x+
+                    8+
+                    c*20,
+                    y-height+
+                    10+
+                    r*17,
+                    9,
+                    10
                 );
-
-                ctx.lineTo(
-                    nx+nextOffset,
-                    nextY
-                );
-
-                ctx.stroke();
 
             }
 
         }
 
+    }
+
+}
+
+
+/* =====================================================
+ ÁRBOLES
+===================================================== */
+
+function drawTrees(){
+
+    const w=
+        canvas.width;
+
+    const h=
+        canvas.height;
+
+
+    for(
+        let i=0;
+        i<18;
+        i++
+    ){
+
+        const side=
+            i%2===0?-1:1;
+
+        const x=
+            w/2+
+            side*
+            (340+
+            (i%6)*60);
+
+        const y=
+            h*.48+
+            (i%7)*55;
+
+        const size=
+            .65+
+            (i%4)*.1;
+
 
         /*
-           Línea central decorativa
+           tronco
         */
 
-        if(i%3===0){
+        ctx.fillStyle="#593b24";
 
-            ctx.fillStyle="#ffe85d";
+        ctx.fillRect(
+            x-5*size,
+            y,
+            10*size,
+            40*size
+        );
+
+
+        /*
+           copa
+        */
+
+        ctx.fillStyle=
+            i%3===0
+            ?"#12633b"
+            :"#1c7c45";
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y-12*size,
+            25*size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x-17*size,
+            y,
+            18*size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x+17*size,
+            y,
+            18*size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+    }
+
+}
+
+
+/* =====================================================
+ PUENTE
+===================================================== */
+
+function drawBridge(){
+
+    const w=
+        canvas.width;
+
+    const y=
+        canvas.height*.42;
+
+
+    ctx.fillStyle="#535e69";
+
+    ctx.fillRect(
+        0,
+        y,
+        w,
+        18
+    );
+
+
+    ctx.fillStyle="#313943";
+
+    ctx.fillRect(
+        0,
+        y+18,
+        w,
+        8
+    );
+
+
+    for(
+        let x=0;
+        x<w;
+        x+=65
+    ){
+
+        ctx.fillStyle="#272f38";
+
+        ctx.fillRect(
+            x,
+            y+26,
+            10,
+            70
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+ CARRETERA
+===================================================== */
+
+function drawRoad(){
+
+    const w=
+        canvas.width;
+
+    const h=
+        canvas.height;
+
+    const horizon=
+        h*.31;
+
+    const center=
+        w/2;
+
+
+    /*
+       Sombra exterior
+    */
+
+    ctx.fillStyle="#4b713d";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        center-55,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+55,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+470,
+        h
+    );
+
+    ctx.lineTo(
+        center-470,
+        h
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /*
+       ASFALTO
+    */
+
+    ctx.fillStyle="#30343a";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        center-45,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+45,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+420,
+        h
+    );
+
+    ctx.lineTo(
+        center-420,
+        h
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /*
+       BORDES
+    */
+
+    ctx.lineWidth=12;
+
+    ctx.strokeStyle="#f5f5f5";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        center-45,
+        horizon
+    );
+
+    ctx.lineTo(
+        center-420,
+        h
+    );
+
+    ctx.moveTo(
+        center+45,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+420,
+        h
+    );
+
+    ctx.stroke();
+
+
+    /*
+       BORDES ROJOS
+    */
+
+    ctx.lineWidth=5;
+
+    ctx.strokeStyle="#e34236";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        center-53,
+        horizon
+    );
+
+    ctx.lineTo(
+        center-428,
+        h
+    );
+
+    ctx.moveTo(
+        center+53,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+428,
+        h
+    );
+
+    ctx.stroke();
+
+
+    /*
+       4 carriles
+    */
+
+    ctx.lineWidth=3;
+
+    ctx.strokeStyle="#ffffff99";
+
+
+    for(
+        let lane=1;
+        lane<4;
+        lane++
+    ){
+
+        const top=
+            center-45+
+            90*lane/4;
+
+        const bottom=
+            center-420+
+            840*lane/4;
+
+
+        /*
+           líneas discontinuas
+        */
+
+        for(
+            let p=.02;
+            p<1;
+            p+=.09
+        ){
+
+            const p2=
+                Math.min(
+                    p+.045,
+                    1
+                );
+
+            const y1=
+                horizon+
+                (h-horizon)*
+                Math.pow(p,1.5);
+
+            const y2=
+                horizon+
+                (h-horizon)*
+                Math.pow(p2,1.5);
+
+            const x1=
+                top+
+                (bottom-top)*
+                Math.pow(p,1.5);
+
+            const x2=
+                top+
+                (bottom-top)*
+                Math.pow(p2,1.5);
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x1,
+                y1
+            );
+
+            ctx.lineTo(
+                x2,
+                y2
+            );
+
+            ctx.stroke();
+
+        }
+
+    }
+
+
+    /*
+       LÍNEA DE META
+       aparece al fondo
+    */
+
+    const finishY=
+        horizon+
+        ((9000-
+        Math.max(
+            0,
+            cars[0]?.distance||0
+        ))/9000)*
+        (h-horizon);
+
+
+    if(
+        finishY>
+        horizon &&
+        finishY<h
+    ){
+
+        ctx.fillStyle="#ffffff";
+
+        for(
+            let x=center-150;
+            x<center+150;
+            x+=30
+        ){
 
             ctx.fillRect(
-                cx-2,
-                y,
-                4+
-                perspective*4,
-                15+
-                perspective*18
+                x,
+                finishY,
+                15,
+                12
             );
 
-        }
+            ctx.fillStyle="#111";
 
-
-        /*
-           árboles
-        */
-
-        if(i%4===0){
-
-            const s=
-                .25+
-                perspective*.8;
-
-            drawTree(
-                cx-
-                roadWidth/2-
-                60*s,
-                y,
-                s
+            ctx.fillRect(
+                x+15,
+                finishY,
+                15,
+                12
             );
 
-            drawTree(
-                cx+
-                roadWidth/2+
-                60*s,
-                y,
-                s
-            );
-
-        }
-
-
-        /*
-           edificios
-        */
-
-        if(i===8){
-
-            drawBuilding(
-                cx-
-                roadWidth/2-
-                150,
-                y-80,
-                .7
-            );
-
-            drawBuilding(
-                cx+
-                roadWidth/2+
-                90,
-                y-80,
-                .6
-            );
-
-        }
-
-
-        /*
-           puente
-        */
-
-        if(i===19){
-
-            drawBridge(y);
+            ctx.fillStyle="#fff";
 
         }
 
@@ -2005,46 +2148,37 @@ function drawRoad(){
 }
 
 
-/* ======================================================
-   CARRO 3D
-====================================================== */
+/* =====================================================
+ AUTO
+===================================================== */
 
 function drawCar(car){
 
-    const index=
-        Math.min(
-            track.length-1,
-            Math.floor(
-                car.progress/10
-            )
-        );
-
-    const p=track[index];
-
-    const center=
-        canvas.width/2+
-        p.x*.035;
-
-
     /*
-       Cada auto mantiene su carril.
+       Posición vertical.
+       Todos los autos están cerca
+       de la parte inferior para
+       crear sensación de conducción.
     */
 
-    const x=
-        center+
-        car.x;
-
     const y=
-        canvas.height*.73;
+        canvas.height*.72;
+
+    const x=
+        canvas.width/2+
+        car.x;
 
 
     ctx.save();
 
-    ctx.translate(x,y);
+    ctx.translate(
+        x,
+        y
+    );
 
 
     /*
-       sombra
+       SOMBRA
     */
 
     ctx.fillStyle="#0009";
@@ -2053,9 +2187,9 @@ function drawCar(car){
 
     ctx.ellipse(
         0,
-        25,
-        48,
-        13,
+        35,
+        50,
+        14,
         0,
         0,
         Math.PI*2
@@ -2065,18 +2199,40 @@ function drawCar(car){
 
 
     /*
-       carro
+       RUEDAS
     */
 
-    ctx.fillStyle=car.color;
+    ctx.fillStyle="#101010";
+
+    ctx.fillRect(
+        -43,
+        -15,
+        14,
+        38
+    );
+
+    ctx.fillRect(
+        29,
+        -15,
+        14,
+        38
+    );
+
+
+    /*
+       CARROCERÍA
+    */
+
+    ctx.fillStyle=
+        car.color;
 
     ctx.beginPath();
 
     ctx.roundRect(
-        -35,
-        -65,
-        70,
-        105,
+        -36,
+        -67,
+        72,
+        108,
         15
     );
 
@@ -2084,19 +2240,18 @@ function drawCar(car){
 
 
     /*
-       brillo
+       BRILLO
     */
 
-    ctx.fillStyle=
-        "rgba(255,255,255,.18)";
+    ctx.fillStyle="#ffffff35";
 
     ctx.beginPath();
 
     ctx.roundRect(
-        -28,
-        -57,
-        20,
-        75,
+        -29,
+        -60,
+        15,
+        87,
         8
     );
 
@@ -2104,18 +2259,18 @@ function drawCar(car){
 
 
     /*
-       techo
+       PARABRISAS
     */
 
-    ctx.fillStyle="#bfe7ff";
+    ctx.fillStyle="#14283b";
 
     ctx.beginPath();
 
     ctx.roundRect(
         -25,
-        -46,
+        -48,
         50,
-        38,
+        40,
         11
     );
 
@@ -2123,29 +2278,11 @@ function drawCar(car){
 
 
     /*
-       vidrio
+       CAPÓ
     */
 
-    ctx.fillStyle="#152537";
-
-    ctx.beginPath();
-
-    ctx.roundRect(
-        -20,
-        -41,
-        40,
-        27,
-        7
-    );
-
-    ctx.fill();
-
-
-    /*
-       capó
-    */
-
-    ctx.fillStyle=car.color;
+    ctx.fillStyle=
+        car.color;
 
     ctx.beginPath();
 
@@ -2153,7 +2290,7 @@ function drawCar(car){
         -29,
         -5,
         58,
-        38,
+        40,
         8
     );
 
@@ -2161,63 +2298,42 @@ function drawCar(car){
 
 
     /*
-       faros
+       FAROS
     */
 
-    ctx.fillStyle="#fff7bf";
+    ctx.fillStyle="#fff7b0";
 
     ctx.fillRect(
         -25,
-        15,
+        17,
         13,
         8
     );
 
     ctx.fillRect(
         12,
-        15,
+        17,
         13,
         8
     );
 
 
     /*
-       ruedas
+       SPOILER
     */
 
-    ctx.fillStyle="#111";
+    ctx.fillStyle="#101010";
 
     ctx.fillRect(
-        -40,
-        -25,
-        11,
-        31
-    );
-
-    ctx.fillRect(
-        29,
-        -25,
-        11,
-        31
+        -34,
+        -70,
+        68,
+        8
     );
 
 
     /*
-       spoiler
-    */
-
-    ctx.fillStyle="#111";
-
-    ctx.fillRect(
-        -31,
-        -63,
-        62,
-        7
-    );
-
-
-    /*
-       número
+       NÚMERO
     */
 
     ctx.fillStyle="white";
@@ -2229,7 +2345,7 @@ function drawCar(car){
     ctx.fillText(
         car.id+1,
         0,
-        17
+        12
     );
 
 
@@ -2238,233 +2354,201 @@ function drawCar(car){
 }
 
 
-/* ======================================================
-   POSICIONES
-====================================================== */
-
-function getOrder(){
-
-    return cars
-        .slice(0,selectedPlayers)
-        .sort(
-            (a,b)=>
-                b.progress-a.progress
-        );
-
-}
-
+/* =====================================================
+ HUD
+===================================================== */
 
 function updateHUD(){
 
-    const order=getOrder();
+    const active=
+        cars.slice(
+            0,
+            players
+        );
 
-    order.forEach(
+
+    const ranking=
+        [...active].sort(
+            (a,b)=>
+                b.distance-a.distance
+        );
+
+
+    ranking.forEach(
         (car,index)=>{
 
-            document
-                .getElementById(
-                    "pos"+
-                    (car.id+1)
-                )
-                .textContent=
-                    (index+1)+"º";
+            document.getElementById(
+                "pos"+(car.id+1)
+            ).textContent=
+                (index+1)+"º";
 
         }
     );
 
 
-    cars.forEach(car=>{
+    cars.forEach(
+        car=>{
 
-        document
-            .getElementById(
-                "speed"+
-                (car.id+1)
-            )
-            .textContent=
+            document.getElementById(
+                "speed"+(car.id+1)
+            ).textContent=
                 Math.round(
-                    Math.max(
-                        0,
-                        car.speed*25
-                    )
+                    car.speed*140
                 );
 
-    });
-
-
-    /*
-       barra de progreso
-    */
-
-    cars.forEach(car=>{
-
-        document
-            .getElementById(
-                "prog"+
-                (car.id+1)
-            )
-            .style.left=
-                (
-                    car.progress/
-                    TOTAL*
-                    100
-                )+"%";
-
-    });
-
-
-    updateMap();
+        }
+    );
 
 }
 
 
-/* ======================================================
-   MINIMAPA
-====================================================== */
+/* =====================================================
+ MINIMAPA
+===================================================== */
 
-function updateMap(){
+function updateMinimap(){
 
-    /*
-       Movemos los cuatro puntos
-       alrededor del circuito.
-    */
+    cars.forEach(
+        car=>{
 
-    cars.forEach(car=>{
+            const percent=
+                car.distance/9000;
 
-        const p=
-            car.progress/TOTAL;
+            const angle=
+                percent*
+                Math.PI*2-
+                Math.PI/2;
 
-        /*
-           trayectoria elíptica
-        */
+            const x=
+                50+
+                Math.cos(angle)*37;
 
-        const angle=
-            p*Math.PI*2-
-            Math.PI/2;
+            const y=
+                55+
+                Math.sin(angle)*40;
 
-        const x=
-            50+
-            Math.cos(angle)*36;
+            const dot=
+                document.getElementById(
+                    "dot"+(car.id+1)
+                );
 
-        const y=
-            50+
-            Math.sin(angle)*40;
+            dot.style.left=
+                x+"%";
 
-        const dot=
-            document
-            .getElementById(
-                "dot"+
-                (car.id+1)
-            );
+            dot.style.top=
+                y+"%";
 
-        dot.style.left=x+"%";
-        dot.style.top=y+"%";
-
-    });
+        }
+    );
 
 }
 
 
-/* ======================================================
-   LOOP
-====================================================== */
+/* =====================================================
+ GAME LOOP
+===================================================== */
 
-function loop(){
+function gameLoop(time){
 
-    if(!gameRunning)
+    if(!running)
         return;
 
 
-    drawSky();
+    let dt=
+        time-lastTime;
 
-    updateCars();
-
-    drawRoad();
+    lastTime=time;
 
 
     /*
-       Autos en orden de profundidad.
+       Evitar saltos si la pestaña
+       estuvo congelada.
     */
 
-    const visible=
-        cars
-        .slice(0,selectedPlayers)
-        .sort(
-            (a,b)=>
-                a.x-b.x
-        );
-
-
-    visible.forEach(
-        car=>drawCar(car)
+    dt=Math.min(
+        dt,
+        35
     );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    drawLandscape();
+
+    drawBuildings();
+
+    drawTrees();
+
+    drawBridge();
+
+    drawRoad();
+
+    updateCars(dt);
+
+    /*
+       Dibujar los autos
+    */
+
+    cars
+        .slice(0,players)
+        .forEach(
+            car=>drawCar(car)
+        );
 
 
     updateHUD();
 
+    updateMinimap();
 
-    requestAnimationFrame(loop);
+
+    requestAnimationFrame(
+        gameLoop
+    );
 
 }
 
 
-/* ======================================================
-   FINAL
-====================================================== */
+/* =====================================================
+ FINAL
+===================================================== */
 
-function endRace(){
+function finishRace(){
 
-    if(finished)
+    if(!running)
         return;
 
-    finished=true;
-    gameRunning=false;
+
+    running=false;
 
 
-    setTimeout(()=>{
-
-        hideScreens();
-
-        document
-            .getElementById(
-                "results"
-            )
-            .classList.remove(
-                "hidden"
-            );
+    const active=
+        cars.slice(
+            0,
+            players
+        );
 
 
-        const order=getOrder();
-
-        const list=
-            document
-            .getElementById(
-                "resultList"
-            );
-
-        list.innerHTML="";
+    const ranking=
+        [...active].sort(
+            (a,b)=>
+                b.distance-a.distance
+        );
 
 
-        order.forEach(
-            (car,index)=>{
-
-                const row=
-                    document
-                    .createElement(
-                        "div"
-                    );
-
-                row.className=
-                    "resultRow";
+    let html="";
 
 
-                if(index===0)
-                    row.classList.add(
-                        "winner"
-                    );
+    ranking.forEach(
+        (car,index)=>{
 
-
-                row.innerHTML=`
-
+            html+=`
+                <div class="result">
                     <span>
                         ${index+1}º
                         JUGADOR ${car.id+1}
@@ -2477,42 +2561,49 @@ function endRace(){
                             :""
                         }
                     </span>
+                </div>
+            `;
 
-                `;
+        }
+    );
 
-                list.appendChild(row);
 
-            }
-        );
+    document.getElementById(
+        "results"
+    ).innerHTML=html;
 
-    },800);
+
+    document.getElementById(
+        "finish"
+    ).style.display="flex";
 
 }
 
 
-/* ======================================================
-   VOLANTE CELULAR
-====================================================== */
+/* =====================================================
+ VOLANTE CELULAR
+===================================================== */
 
 const wheel=
     document.getElementById(
         "wheel"
     );
 
-let wheelDown=false;
+let wheelPressed=false;
 let wheelStart=0;
 
 
 wheel.addEventListener(
     "pointerdown",
-    e=>{
+    event=>{
 
-        wheelDown=true;
+        wheelPressed=true;
 
-        wheelStart=e.clientX;
+        wheelStart=
+            event.clientX;
 
         wheel.setPointerCapture(
-            e.pointerId
+            event.pointerId
         );
 
     }
@@ -2521,109 +2612,114 @@ wheel.addEventListener(
 
 wheel.addEventListener(
     "pointermove",
-    e=>{
+    event=>{
 
-        if(!wheelDown)
+        if(!wheelPressed)
             return;
 
-        steering=
-            Math.max(
-                -1,
-                Math.min(
-                    1,
-                    (e.clientX-wheelStart)/60
-                )
-            );
 
+        const movement=
+            event.clientX-wheelStart;
 
-        /*
-           El volante móvil controla
-           al Jugador 1.
-        */
 
         keys["a"]=
-            steering<-.15;
+            movement < -18;
 
         keys["d"]=
-            steering>.15;
+            movement > 18;
 
     }
 );
 
+
+function stopWheel(){
+
+    wheelPressed=false;
+
+    keys["a"]=false;
+    keys["d"]=false;
+
+}
 
 wheel.addEventListener(
     "pointerup",
-    ()=>{
-        wheelDown=false;
-        steering=0;
-        keys["a"]=false;
-        keys["d"]=false;
-    }
+    stopWheel
 );
-
 
 wheel.addEventListener(
     "pointercancel",
-    ()=>{
-        wheelDown=false;
-        steering=0;
-        keys["a"]=false;
-        keys["d"]=false;
-    }
+    stopWheel
 );
 
 
-/* ======================================================
-   GAS Y FRENO
-====================================================== */
+/* =====================================================
+ BOTONES CELULAR
+===================================================== */
 
-function holdButton(
+function mobileButton(
     element,
     key
 ){
 
     element.addEventListener(
         "pointerdown",
-        e=>{
-            e.preventDefault();
+        event=>{
+
+            event.preventDefault();
+
             keys[key]=true;
+
         }
     );
 
     element.addEventListener(
         "pointerup",
-        e=>{
-            e.preventDefault();
+        event=>{
+
+            event.preventDefault();
+
             keys[key]=false;
+
         }
     );
 
     element.addEventListener(
         "pointercancel",
         ()=>{
+
             keys[key]=false;
+
+        }
+    );
+
+    element.addEventListener(
+        "pointerleave",
+        ()=>{
+
+            keys[key]=false;
+
         }
     );
 
 }
 
 
-holdButton(
+mobileButton(
     document.getElementById("gas"),
     "w"
 );
 
-holdButton(
+mobileButton(
     document.getElementById("brake"),
     "s"
 );
 
 
-/* ======================================================
-   INICIALIZACIÓN
-====================================================== */
+/* =====================================================
+ ARRANQUE
+===================================================== */
 
-resize();
+showMenu();
 
 </script>
 
