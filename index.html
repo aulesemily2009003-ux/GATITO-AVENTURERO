@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>FLASH CAR</title>
+<title>TURBO CAR</title>
 
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 
@@ -279,6 +279,7 @@ canvas{
 }
 
 @media(max-width:700px){
+
   #mobileControls{
     display:flex;
   }
@@ -310,7 +311,7 @@ canvas{
   <div class="panel" id="mainPanel">
 
     <div class="logo">
-      FLASH CAR
+      TURBO CAR
     </div>
 
     <div class="subtitle">
@@ -339,7 +340,7 @@ canvas{
   <div class="panel" id="lobby">
 
     <div class="logo" style="font-size:48px">
-      FLASH CAR
+      TURBO CAR
     </div>
 
     <p>Comparte este código:</p>
@@ -436,7 +437,7 @@ canvas{
 
   <div class="finishPanel">
 
-    <h1>🏆 FLASH CAR</h1>
+    <h1>🏆 TURBO CAR</h1>
 
     <div class="rank" id="finalRank">
       1°
@@ -601,11 +602,6 @@ function newCar(index,name){
 
     input:{},
 
-    /*
-      NUEVO:
-      ángulo de dirección suavizado.
-    */
-
     steeringAngle:0
 
   };
@@ -635,7 +631,7 @@ function showJoin(){
 
       <div class="logo"
            style="font-size:52px">
-        FLASH CAR
+        TURBO CAR
       </div>
 
       <div class="subtitle">
@@ -692,7 +688,7 @@ function createRoom(){
     );
 
   const peerId=
-    "flash-car-room-"+roomCode;
+    "turbo-car-room-"+roomCode;
 
   peer=new Peer(peerId);
 
@@ -845,7 +841,7 @@ function joinRoom(){
     myId=id;
 
     const hostId=
-      "flash-car-room-"+roomCode;
+      "turbo-car-room-"+roomCode;
 
     const conn=
       peer.connect(
@@ -1105,6 +1101,7 @@ addEventListener("keydown",e=>{
 
 });
 
+
 addEventListener("keyup",e=>{
 
   keys[e.key.toLowerCase()]=false;
@@ -1155,6 +1152,7 @@ function bindButton(id,key){
 
 }
 
+
 bindButton("left","arrowleft");
 bindButton("right","arrowright");
 bindButton("up","arrowup");
@@ -1203,7 +1201,7 @@ function getInput(){
 
 
 /* =========================================================
-   FÍSICA CORREGIDA
+   FÍSICA
 ========================================================= */
 
 function updateCar(car,input){
@@ -1211,10 +1209,6 @@ function updateCar(car,input){
   if(!input)
     input={};
 
-
-  /*
-    ACELERACIÓN
-  */
 
   if(input.up){
 
@@ -1229,10 +1223,6 @@ function updateCar(car,input){
 
   }
 
-
-  /*
-    FRENO / REVERSA
-  */
 
   if(input.down){
 
@@ -1249,10 +1239,6 @@ function updateCar(car,input){
   }
 
 
-  /*
-    VELOCIDAD MÁXIMA
-  */
-
   const maxSpeed=
     input.turbo
     ?13
@@ -1267,18 +1253,6 @@ function updateCar(car,input){
       )
     );
 
-
-  /*
-    =====================================================
-    GIRO SUAVIZADO
-    =====================================================
-
-    Antes el auto cambiaba de dirección demasiado rápido.
-
-    Ahora primero calculamos hacia dónde quiere girar
-    el jugador y después acercamos progresivamente
-    el volante a esa dirección.
-  */
 
   let targetSteering=0;
 
@@ -1295,11 +1269,6 @@ function updateCar(car,input){
   }
 
 
-  /*
-    Si no se pulsa nada, el volante vuelve
-    suavemente al centro.
-  */
-
   car.steeringAngle +=
     (
       targetSteering-
@@ -1307,17 +1276,7 @@ function updateCar(car,input){
     )*0.10;
 
 
-  /*
-    Giro solamente cuando el auto tiene velocidad.
-  */
-
   if(Math.abs(car.speed)>0.12){
-
-    /*
-      Factor de giro progresivo.
-      A baja velocidad gira poco.
-      A velocidad alta gira un poco más.
-    */
 
     const speedFactor=
       Math.min(
@@ -1327,11 +1286,6 @@ function updateCar(car,input){
       );
 
 
-    /*
-      0.045 = giro suave.
-      Esto evita los cambios bruscos.
-    */
-
     car.angle+=
       car.steeringAngle*
       0.045*
@@ -1339,10 +1293,6 @@ function updateCar(car,input){
 
   }
 
-
-  /*
-    TURBO
-  */
 
   if(input.turbo&&input.up){
 
@@ -1362,10 +1312,6 @@ function updateCar(car,input){
 
   }
 
-
-  /*
-    MOVIMIENTO
-  */
 
   car.x+=
     Math.cos(car.angle)*
@@ -1420,10 +1366,6 @@ function updateProgress(car){
   const progress=
     nearest/TRACK_POINTS;
 
-
-  /*
-    Vuelta completada.
-  */
 
   if(
     car.progress>0.88&&
@@ -1484,10 +1426,6 @@ function loop(){
 
       const input=
         getInput();
-
-      /*
-        Movimiento local inmediato.
-      */
 
       updateCar(
         me,
@@ -1726,10 +1664,6 @@ function drawTrack(cam){
   );
 
 
-  /*
-    Brillo rosa exterior.
-  */
-
   makeTrackPath();
 
   ctx.lineWidth=180;
@@ -1743,10 +1677,6 @@ function drawTrack(cam){
   ctx.stroke();
 
 
-  /*
-    Morado.
-  */
-
   makeTrackPath();
 
   ctx.lineWidth=160;
@@ -1758,10 +1688,6 @@ function drawTrack(cam){
   ctx.stroke();
 
 
-  /*
-    Asfalto.
-  */
-
   makeTrackPath();
 
   ctx.lineWidth=145;
@@ -1771,10 +1697,6 @@ function drawTrack(cam){
   ctx.stroke();
 
 
-  /*
-    Borde cyan.
-  */
-
   makeTrackPath();
 
   ctx.lineWidth=4;
@@ -1783,10 +1705,6 @@ function drawTrack(cam){
 
   ctx.stroke();
 
-
-  /*
-    Línea central.
-  */
 
   makeTrackPath();
 
@@ -1803,10 +1721,6 @@ function drawTrack(cam){
 
   ctx.setLineDash([]);
 
-
-  /*
-    META.
-  */
 
   const p=track[0];
 
@@ -1843,10 +1757,6 @@ function drawTrack(cam){
 
   ctx.restore();
 
-
-  /*
-    Zonas turbo.
-  */
 
   for(let i=0;i<8;i++){
 
@@ -1910,10 +1820,6 @@ function drawCar(car,cam){
   );
 
 
-  /*
-    Sombra.
-  */
-
   ctx.fillStyle="#0009";
 
   ctx.beginPath();
@@ -1930,10 +1836,6 @@ function drawCar(car,cam){
 
   ctx.fill();
 
-
-  /*
-    Carro.
-  */
 
   ctx.shadowColor=
     car.color;
@@ -1956,10 +1858,6 @@ function drawCar(car,cam){
   ctx.fill();
 
 
-  /*
-    Cabina.
-  */
-
   ctx.shadowBlur=0;
 
   ctx.fillStyle="#070714";
@@ -1977,10 +1875,6 @@ function drawCar(car,cam){
   ctx.fill();
 
 
-  /*
-    Faros.
-  */
-
   ctx.fillStyle="#fff";
 
   ctx.fillRect(
@@ -1997,10 +1891,6 @@ function drawCar(car,cam){
     7
   );
 
-
-  /*
-    Turbo.
-  */
 
   if(car.speed>6){
 
@@ -2034,10 +1924,6 @@ function drawCar(car,cam){
 
   ctx.restore();
 
-
-  /*
-    Nombre.
-  */
 
   ctx.textAlign="center";
 
