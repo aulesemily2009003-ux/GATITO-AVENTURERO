@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Turbo Kart Neon</title>
+<title>FLASH CAR</title>
 
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 
@@ -14,71 +14,69 @@
 }
 
 html,body{
+  margin:0;
   width:100%;
   height:100%;
-  margin:0;
   overflow:hidden;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,sans-serif;
+  background:#08000f;
   color:white;
-  background:
-    radial-gradient(circle at 20% 20%,#ff149355,transparent 30%),
-    radial-gradient(circle at 80% 20%,#7a00ff55,transparent 30%),
-    radial-gradient(circle at 50% 90%,#00d9ff44,transparent 35%),
-    #080014;
 }
 
 button,input{
-  font:inherit;
+  font-family:inherit;
 }
 
 button{
-  cursor:pointer;
+  touch-action:none;
 }
 
 #menu{
-  position:absolute;
+  position:fixed;
   inset:0;
-  z-index:50;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:20px;
   background:
-    linear-gradient(135deg,#ff008055,#6d00ff55),
-    #080014;
+    radial-gradient(circle at 15% 20%,#ff008c55,transparent 30%),
+    radial-gradient(circle at 85% 20%,#7000ff55,transparent 30%),
+    radial-gradient(circle at 50% 90%,#00d9ff44,transparent 35%),
+    #08000f;
+  z-index:100;
 }
 
 .panel{
-  width:min(520px,100%);
+  width:min(500px,100%);
   padding:30px;
   border-radius:30px;
   text-align:center;
-  background:linear-gradient(145deg,#ff149933,#7200ff44);
-  border:2px solid #ff49d8;
+  background:linear-gradient(145deg,#ff008c38,#7200ff42);
+  border:2px solid #ff39d4;
   box-shadow:
-    0 0 20px #ff00cc,
-    0 0 70px #7200ff88,
-    inset 0 0 40px #ff149922;
-  backdrop-filter:blur(15px);
+    0 0 25px #ff00bbaa,
+    0 0 80px #7200ff66,
+    inset 0 0 30px #ff00aa22;
+  backdrop-filter:blur(14px);
 }
 
 .logo{
-  margin:0 0 5px;
-  font-size:clamp(42px,10vw,72px);
+  margin:0;
+  font-size:clamp(48px,12vw,78px);
   font-weight:1000;
   font-style:italic;
-  letter-spacing:-4px;
-  color:#fff;
+  letter-spacing:-5px;
   text-shadow:
-    0 0 8px #ff28cf,
-    0 0 25px #ff00c8,
-    0 0 55px #8a00ff;
+    0 0 10px #ff00cc,
+    0 0 30px #ff008c,
+    0 0 60px #7200ff;
 }
 
 .subtitle{
-  color:#ff9bea;
-  margin-bottom:25px;
+  color:#ff9ee9;
   font-weight:bold;
+  letter-spacing:3px;
+  margin:8px 0 25px;
 }
 
 input{
@@ -86,83 +84,81 @@ input{
   padding:16px;
   margin:7px 0;
   border-radius:15px;
-  border:2px solid #ff3fcf;
+  border:2px solid #ff37d4;
+  background:#13001e;
+  color:#fff;
   outline:none;
-  color:white;
-  background:#160025;
   text-align:center;
   font-size:18px;
-  box-shadow:0 0 15px #ff00aa44 inset;
 }
 
 input:focus{
   border-color:#00eaff;
-  box-shadow:0 0 20px #00eaff88;
+  box-shadow:0 0 18px #00eaff88;
 }
 
-.menuButtons{
+.buttons{
   display:grid;
-  grid-template-columns:1fr 1fr;
   gap:12px;
   margin-top:12px;
 }
 
-.neonBtn{
+.btn{
   border:0;
   border-radius:16px;
-  padding:16px;
-  color:white;
-  font-weight:900;
+  padding:17px;
+  color:#fff;
+  font-weight:1000;
+  font-size:16px;
   background:linear-gradient(135deg,#ff008c,#8b00ff);
-  box-shadow:
-    0 5px 0 #52006f,
-    0 0 20px #ff00bb88;
+  box-shadow:0 5px 0 #4b006b,0 0 22px #ff00bb88;
 }
 
-.neonBtn:active{
+.btn.blue{
+  background:linear-gradient(135deg,#00eaff,#0066ff);
+  box-shadow:0 5px 0 #00337a,0 0 22px #00d9ff88;
+}
+
+.btn:active{
   transform:translateY(4px);
-  box-shadow:0 1px 0 #52006f;
-}
-
-.blue{
-  background:linear-gradient(135deg,#00d9ff,#005eff);
-  box-shadow:0 5px 0 #003c8f,0 0 20px #00d9ff88;
 }
 
 #lobby{
   display:none;
 }
 
-.code{
+.roomCode{
   margin:20px 0;
-  padding:16px;
+  padding:15px;
   border-radius:18px;
-  background:#090014;
   border:2px solid #00eaff;
-  color:#4df7ff;
-  font-size:34px;
+  background:#05000c;
+  color:#52f7ff;
+  font-size:38px;
   font-weight:1000;
   letter-spacing:8px;
-  text-shadow:0 0 15px #00eaff;
+  text-shadow:0 0 20px #00eaff;
 }
 
 .players{
   display:grid;
   gap:8px;
-  margin:15px 0;
+  margin:15px 0 20px;
 }
 
 .player{
   padding:12px;
-  border-radius:13px;
-  background:#ffffff12;
-  border:1px solid #ffffff33;
+  border-radius:14px;
+  background:#ffffff10;
+  border:1px solid #ffffff2e;
+  font-weight:bold;
 }
 
 #game{
-  position:absolute;
+  position:fixed;
   inset:0;
   display:none;
+  background:#100018;
 }
 
 canvas{
@@ -174,89 +170,96 @@ canvas{
 
 #hud{
   position:absolute;
+  z-index:10;
   top:12px;
   left:50%;
   transform:translateX(-50%);
-  z-index:10;
   display:flex;
-  gap:8px;
-  align-items:center;
-  padding:8px 12px;
-  border-radius:18px;
-  background:linear-gradient(90deg,#ff008c,#7200ff,#00cfff);
+  gap:7px;
+  padding:7px;
+  border-radius:17px;
+  background:linear-gradient(90deg,#ff008c,#7200ff,#00d9ff);
   box-shadow:0 0 25px #ff00bb99;
-  font-weight:900;
   white-space:nowrap;
 }
 
 .badge{
-  padding:6px 9px;
+  padding:7px 10px;
   border-radius:10px;
-  background:#080014aa;
+  background:#08000dcc;
+  font-size:13px;
+  font-weight:900;
 }
 
-#message{
+#countdown{
   position:absolute;
-  left:50%;
-  top:42%;
-  transform:translate(-50%,-50%);
   z-index:20;
-  font-size:clamp(45px,12vw,110px);
+  left:50%;
+  top:43%;
+  transform:translate(-50%,-50%);
+  font-size:clamp(60px,15vw,130px);
   font-weight:1000;
   font-style:italic;
-  text-align:center;
   text-shadow:
-    0 0 10px #ff00c8,
-    0 0 30px #8a00ff,
-    0 0 60px #00eaff;
+    0 0 15px #ff00c8,
+    0 0 40px #7200ff,
+    0 0 80px #00eaff;
   pointer-events:none;
 }
 
-#controls{
+#mobileControls{
   position:absolute;
-  inset:auto 0 20px 0;
   z-index:30;
+  left:0;
+  right:0;
+  bottom:18px;
   display:none;
   justify-content:space-between;
-  padding:0 25px;
+  padding:0 18px;
   pointer-events:none;
 }
 
-.controlGroup{
+.controlSide{
   display:flex;
-  gap:12px;
+  gap:10px;
   pointer-events:auto;
 }
 
 .control{
-  width:72px;
-  height:72px;
-  border-radius:22px;
-  border:2px solid #ff58df;
-  background:linear-gradient(145deg,#ff008caa,#7200ffaa);
-  color:#fff;
-  font-size:28px;
-  font-weight:900;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  border:2px solid #ff61df;
+  background:
+    radial-gradient(circle at 35% 25%,#ff83e8,#ff008c 55%,#7200ff);
+  color:white;
+  font-size:27px;
+  font-weight:1000;
   box-shadow:
     0 0 15px #ff00bb,
-    inset 0 0 15px #ffffff22;
-  touch-action:none;
+    inset 0 0 15px #ffffff33;
+}
+
+.control.turbo{
+  border-color:#58f7ff;
+  background:
+    radial-gradient(circle at 35% 25%,#baffff,#00d9ff 55%,#0066ff);
+  box-shadow:0 0 20px #00eaff;
 }
 
 .control:active{
-  transform:scale(.9);
-  background:#ff00ccee;
+  transform:scale(.88);
 }
 
 #finish{
-  display:none;
-  position:absolute;
+  position:fixed;
   inset:0;
-  z-index:40;
+  z-index:90;
+  display:none;
   align-items:center;
   justify-content:center;
-  background:#080014cc;
-  backdrop-filter:blur(10px);
+  background:#08000fd9;
+  backdrop-filter:blur(12px);
 }
 
 .finishPanel{
@@ -264,34 +267,37 @@ canvas{
   text-align:center;
   padding:30px;
   border-radius:30px;
-  border:2px solid #ff35d1;
+  border:2px solid #ff39d4;
   background:linear-gradient(145deg,#ff008c55,#7200ff66);
   box-shadow:0 0 60px #ff00bb;
 }
 
 .rank{
-  font-size:80px;
+  font-size:90px;
   font-weight:1000;
-  color:#fff;
-  text-shadow:0 0 30px #ff00c8;
+  text-shadow:0 0 35px #ff00cc;
 }
 
 @media(max-width:700px){
+  #mobileControls{
+    display:flex;
+  }
+
   .panel{
     padding:22px;
   }
 
-  .menuButtons{
-    grid-template-columns:1fr;
+  #hud{
+    font-size:11px;
   }
 
-  #hud{
-    font-size:12px;
+  .badge{
+    padding:6px;
   }
 
   .control{
-    width:65px;
-    height:65px;
+    width:62px;
+    height:62px;
   }
 }
 </style>
@@ -299,49 +305,62 @@ canvas{
 
 <body>
 
-<!-- MENU -->
 <div id="menu">
 
   <div class="panel" id="mainPanel">
 
-    <h1 class="logo">TURBO KART</h1>
-    <div class="subtitle">NEON STREET RACING</div>
+    <div class="logo">
+      FLASH CAR
+    </div>
 
-    <input id="nameInput"
-           maxlength="14"
-           placeholder="Tu nombre">
+    <div class="subtitle">
+      NEON STREET RACING
+    </div>
 
-    <div class="menuButtons">
-      <button class="neonBtn" onclick="createRoom()">
+    <input
+      id="name"
+      maxlength="14"
+      placeholder="Escribe tu nombre">
+
+    <div class="buttons">
+
+      <button class="btn" onclick="createRoom()">
         🏁 CREAR SALA
       </button>
 
-      <button class="neonBtn blue" onclick="showJoin()">
-        🔑 UNIRME
+      <button class="btn blue" onclick="showJoin()">
+        🔑 UNIRSE A SALA
       </button>
+
     </div>
 
   </div>
 
-  <!-- LOBBY -->
   <div class="panel" id="lobby">
 
-    <h2>🏎️ SALA</h2>
+    <div class="logo" style="font-size:48px">
+      FLASH CAR
+    </div>
 
-    <div class="code" id="roomCode">----</div>
+    <p>Comparte este código:</p>
 
-    <div>Comparte este código con tus amigos</div>
+    <div class="roomCode" id="roomCode">
+      ----
+    </div>
 
     <div class="players" id="players"></div>
 
-    <button class="neonBtn"
-            id="startBtn"
-            onclick="startRace()">
+    <button
+      id="startButton"
+      class="btn"
+      onclick="startRace()">
       🚦 INICIAR CARRERA
     </button>
 
-    <button class="neonBtn blue"
-            onclick="location.reload()">
+    <button
+      class="btn blue"
+      onclick="location.reload()"
+      style="margin-top:10px">
       SALIR
     </button>
 
@@ -350,40 +369,62 @@ canvas{
 </div>
 
 
-<!-- GAME -->
 <div id="game">
 
   <canvas id="canvas"></canvas>
 
   <div id="hud">
-    <div class="badge">🏁 <span id="lap">1/3</span></div>
-    <div class="badge">🏆 <span id="position">1°</span></div>
-    <div class="badge">⚡ <span id="speed">0</span></div>
-    <div class="badge">👥 <span id="online">1</span>/4</div>
-  </div>
 
-  <div id="message"></div>
-
-  <!-- CONTROLES CELULAR -->
-  <div id="controls">
-
-    <div class="controlGroup">
-      <button class="control"
-              id="leftBtn">◀</button>
-
-      <button class="control"
-              id="rightBtn">▶</button>
+    <div class="badge">
+      🏁 <span id="lap">1/3</span>
     </div>
 
-    <div class="controlGroup">
-      <button class="control"
-              id="brakeBtn">▼</button>
+    <div class="badge">
+      🏆 <span id="position">1°</span>
+    </div>
 
-      <button class="control"
-              id="gasBtn">▲</button>
+    <div class="badge">
+      ⚡ <span id="speed">0</span>
+    </div>
 
-      <button class="control"
-              id="turboBtn">⚡</button>
+    <div class="badge">
+      👥 <span id="online">1</span>/4
+    </div>
+
+  </div>
+
+  <div id="countdown"></div>
+
+  <!-- CONTROLES PARA CELULAR -->
+
+  <div id="mobileControls">
+
+    <div class="controlSide">
+
+      <button class="control" id="left">
+        ◀
+      </button>
+
+      <button class="control" id="right">
+        ▶
+      </button>
+
+    </div>
+
+    <div class="controlSide">
+
+      <button class="control" id="down">
+        ▼
+      </button>
+
+      <button class="control" id="up">
+        ▲
+      </button>
+
+      <button class="control turbo" id="turbo">
+        ⚡
+      </button>
+
     </div>
 
   </div>
@@ -391,20 +432,22 @@ canvas{
 </div>
 
 
-<!-- FIN -->
 <div id="finish">
 
   <div class="finishPanel">
 
-    <h1>🏆 CARRERA TERMINADA</h1>
+    <h1>🏆 FLASH CAR</h1>
 
-    <div class="rank" id="finalRank">1°</div>
+    <div class="rank" id="finalRank">
+      1°
+    </div>
 
-    <h2 id="winnerText"></h2>
+    <h2 id="finalText"></h2>
 
-    <button class="neonBtn"
-            onclick="location.reload()">
-      🔄 VOLVER A JUGAR
+    <button
+      class="btn"
+      onclick="location.reload()">
+      🔄 JUGAR DE NUEVO
     </button>
 
   </div>
@@ -418,110 +461,152 @@ canvas{
    CONFIGURACIÓN
 ========================================================= */
 
-const MAX_PLAYERS = 4;
-const TOTAL_LAPS = 3;
+const MAX_PLAYERS=4;
+const LAPS=3;
 
-let peer = null;
-let host = false;
-let roomId = "";
-let myId = "";
-let myName = "";
+let peer=null;
+let host=false;
+let roomCode="";
+let myId="";
+let myName="";
 
-let connections = {};
-let players = {};
+let connections={};
+let players={};
 
-let started = false;
-let countdown = false;
+let gameStarted=false;
+
+const colors=[
+  "#ff1493",
+  "#8b2cff",
+  "#00d9ff",
+  "#39ff14"
+];
 
 
 /* =========================================================
    CANVAS
 ========================================================= */
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas=
+  document.getElementById("canvas");
 
-let W = innerWidth;
-let H = innerHeight;
+const ctx=
+  canvas.getContext("2d");
+
+let VW=innerWidth;
+let VH=innerHeight;
 
 function resize(){
 
-  W = canvas.width = innerWidth * devicePixelRatio;
-  H = canvas.height = innerHeight * devicePixelRatio;
+  const dpr=
+    Math.min(
+      devicePixelRatio||1,
+      2
+    );
 
-  canvas.style.width = innerWidth + "px";
-  canvas.style.height = innerHeight + "px";
+  canvas.width=
+    innerWidth*dpr;
 
-  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  canvas.height=
+    innerHeight*dpr;
+
+  canvas.style.width=
+    innerWidth+"px";
+
+  canvas.style.height=
+    innerHeight+"px";
+
+  ctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
+
+  VW=innerWidth;
+  VH=innerHeight;
 }
 
 addEventListener("resize",resize);
+
 resize();
 
 
 /* =========================================================
-   PISTA
+   PISTA LARGA
 ========================================================= */
 
-/*
-   La pista utiliza una curva cerrada.
-   A diferencia de una pista recta, el jugador puede
-   realizar giros fuertes.
-*/
+const track=[];
+const TRACK_POINTS=1000;
 
-const track = [];
+for(let i=0;i<TRACK_POINTS;i++){
 
-const centerX = 0;
-const centerY = 0;
+  const t=
+    i/TRACK_POINTS*Math.PI*2;
 
-const RX = 900;
-const RY = 540;
+  const radiusX=
+    1550+
+    Math.sin(t*5)*230+
+    Math.cos(t*9)*100;
 
-for(let i=0;i<240;i++){
-
-  const a = i / 240 * Math.PI * 2;
+  const radiusY=
+    900+
+    Math.cos(t*4)*180+
+    Math.sin(t*7)*80;
 
   track.push({
-    x:Math.cos(a) * RX,
-    y:Math.sin(a) * RY
+
+    x:Math.cos(t)*radiusX,
+
+    y:Math.sin(t)*radiusY
+
   });
 
 }
 
 
 /* =========================================================
-   CREAR AUTO
+   AUTO
 ========================================================= */
 
-function createCar(index,name){
+function newCar(index,name){
+
+  const p=track[0];
 
   return {
 
     id:index,
 
-    name:name || "Jugador",
+    name:name||"Jugador",
 
-    x:track[0].x,
-    y:track[0].y,
+    x:p.x,
 
-    angle:Math.PI/2,
+    y:p.y,
+
+    angle:
+      Math.atan2(
+        track[1].y-p.y,
+        track[1].x-p.x
+      ),
 
     speed:0,
 
-    lap:0,
-
     progress:0,
+
+    lap:0,
 
     finished:false,
 
-    color:[
-      "#ff1493",
-      "#7b2cff",
-      "#00d9ff",
-      "#39ff14"
-    ][index % 4],
+    color:
+      colors[index%colors.length],
 
-    turbo:100
+    turbo:100,
+
+    input:{},
+
+    /*
+      NUEVO:
+      ángulo de dirección suavizado.
+    */
+
+    steeringAngle:0
 
   };
 
@@ -529,50 +614,62 @@ function createCar(index,name){
 
 
 /* =========================================================
-   MENU
+   MENÚ
 ========================================================= */
 
 function getName(){
 
-  const value =
-    document.getElementById("nameInput").value.trim();
+  const n=
+    document.getElementById("name")
+      ?.value.trim();
 
-  return value || "Jugador";
+  return n||"Jugador";
 
 }
 
 
 function showJoin(){
 
-  document.getElementById("mainPanel").innerHTML = `
+  document.getElementById("mainPanel")
+    .innerHTML=`
 
-    <h1 class="logo">UNIRSE</h1>
+      <div class="logo"
+           style="font-size:52px">
+        FLASH CAR
+      </div>
 
-    <div class="subtitle">
-      ENTRA A LA CARRERA
-    </div>
+      <div class="subtitle">
+        UNIRSE A CARRERA
+      </div>
 
-    <input id="joinName"
-           maxlength="14"
-           placeholder="Tu nombre">
+      <input
+        id="joinName"
+        maxlength="14"
+        placeholder="Tu nombre">
 
-    <input id="joinCode"
-           maxlength="4"
-           inputmode="numeric"
-           placeholder="Código de sala">
+      <input
+        id="joinCode"
+        maxlength="4"
+        inputmode="numeric"
+        placeholder="Código de 4 números">
 
-    <button class="neonBtn blue"
-            style="width:100%;margin-top:10px"
-            onclick="joinRoom()">
-      🏎️ ENTRAR
-    </button>
+      <div class="buttons">
 
-    <button class="neonBtn"
-            style="width:100%;margin-top:10px"
-            onclick="location.reload()">
-      VOLVER
-    </button>
+        <button
+          class="btn blue"
+          onclick="joinRoom()">
+          🏎️ ENTRAR
+        </button>
+
+        <button
+          class="btn"
+          onclick="location.reload()">
+          VOLVER
+        </button>
+
+      </div>
   `;
+
 }
 
 
@@ -582,1230 +679,22 @@ function showJoin(){
 
 function createRoom(){
 
-  myName = getName();
-
-  host = true;
-
-  peer = new Peer();
-
-  peer.on("open",id=>{
-
-    myId = id;
-
-    roomId =
-      Math.floor(1000 + Math.random()*9000)
-      .toString();
-
-    players = {};
-
-    players[myId] = createCar(0,myName);
-
-    openLobby();
-
-  });
-
-
-  peer.on("connection",conn=>{
-
-    if(Object.keys(players).length >= MAX_PLAYERS){
-
-      conn.on("open",()=>{
-        conn.send({
-          type:"FULL"
-        });
-
-        setTimeout(()=>conn.close(),500);
-      });
-
-      return;
-    }
-
-    connections[conn.peer] = conn;
-
-    conn.on("data",data=>{
-
-      if(data.type === "JOIN"){
-
-        const ids = Object.keys(players);
-
-        const index = ids.length;
-
-        players[conn.peer] =
-          createCar(index,data.name);
-
-        broadcastLobby();
-
-      }
-
-      if(data.type === "INPUT"){
-
-        if(players[conn.peer]){
-
-          players[conn.peer].input =
-            data.input;
-        }
-
-      }
-
-    });
-
-    conn.on("close",()=>{
-
-      delete players[conn.peer];
-
-      delete connections[conn.peer];
-
-      broadcastLobby();
-
-    });
-
-  });
-
-}
-
-
-/* =========================================================
-   UNIRSE
-========================================================= */
-
-function joinRoom(){
-
-  myName =
-    document.getElementById("joinName").value.trim()
-    || "Jugador";
-
-  roomId =
-    document.getElementById("joinCode").value.trim();
-
-  if(!/^\d{4}$/.test(roomId)){
-
-    alert("El código debe tener 4 números.");
-    return;
-
-  }
-
-  /*
-    El ID público del host se publica mediante el
-    código de sala.
-  */
-
-  const hostPeerId = "turbo-kart-" + roomId;
-
-  peer = new Peer();
-
-  peer.on("open",id=>{
-
-    myId = id;
-
-    const conn =
-      peer.connect(hostPeerId);
-
-    connections.host = conn;
-
-    conn.on("open",()=>{
-
-      conn.send({
-        type:"JOIN",
-        name:myName
-      });
-
-    });
-
-    conn.on("data",handleHostData);
-
-    conn.on("close",()=>{
-
-      alert("El anfitrión salió de la sala.");
-
-      location.reload();
-
-    });
-
-  });
-
-}
-
-
-/* =========================================================
-   LOBBY
-========================================================= */
-
-function openLobby(){
-
-  document.getElementById("mainPanel")
-    .style.display="none";
-
-  document.getElementById("lobby")
-    .style.display="block";
-
-  document.getElementById("roomCode")
-    .textContent=roomId;
-
-  updateLobby();
-
-}
-
-
-function updateLobby(){
-
-  const box =
-    document.getElementById("players");
-
-  box.innerHTML="";
-
-  Object.values(players).forEach((p,i)=>{
-
-    const div =
-      document.createElement("div");
-
-    div.className="player";
-
-    div.innerHTML =
-      `${i===0?"👑":"🏎️"} ${escapeHTML(p.name)}`;
-
-    box.appendChild(div);
-
-  });
-
-  document.getElementById("startBtn")
-    .style.display =
-      host ? "block":"none";
-
-}
-
-
-function broadcastLobby(){
-
-  updateLobby();
-
-  Object.values(connections).forEach(conn=>{
-
-    if(conn && conn.open){
-
-      conn.send({
-        type:"LOBBY",
-        players:players
-      });
-
-    }
-
-  });
-
-}
-
-
-/* =========================================================
-   DATOS DEL HOST
-========================================================= */
-
-function handleHostData(data){
-
-  if(data.type === "LOBBY"){
-
-    players = data.players;
-
-    openLobby();
-
-  }
-
-  if(data.type === "START"){
-
-    players = data.players;
-
-    beginGame();
-
-  }
-
-  if(data.type === "STATE"){
-
-    players = data.players;
-
-    render();
-
-  }
-
-}
-
-
-/* =========================================================
-   INICIAR
-========================================================= */
-
-function startRace(){
-
-  if(!host) return;
-
-  const count =
-    Object.keys(players).length;
-
-  if(count < 1) return;
-
-  countdown = true;
-
-  broadcastAll({
-
-    type:"START",
-    players:players
-
-  });
-
-  beginGame();
-
-}
-
-
-function broadcastAll(data){
-
-  Object.values(connections).forEach(conn=>{
-
-    if(conn && conn.open){
-
-      conn.send(data);
-
-    }
-
-  });
-
-}
-
-
-/* =========================================================
-   JUEGO
-========================================================= */
-
-function beginGame(){
-
-  document.getElementById("menu")
-    .style.display="none";
-
-  document.getElementById("game")
-    .style.display="block";
-
-  document.getElementById("controls")
-    .style.display =
-      "flex";
-
-  started=true;
-
-  showCountdown();
-
-  requestAnimationFrame(gameLoop);
-
-}
-
-
-function showCountdown(){
-
-  const message =
-    document.getElementById("message");
-
-  let n=3;
-
-  message.textContent=n;
-
-  const timer=setInterval(()=>{
-
-    n--;
-
-    if(n>0){
-
-      message.textContent=n;
-
-    }else{
-
-      clearInterval(timer);
-
-      message.textContent="GO!";
-
-      setTimeout(()=>{
-        message.textContent="";
-      },700);
-
-    }
-
-  },900);
-
-}
-
-
-/* =========================================================
-   CONTROLES
-========================================================= */
-
-const keys={};
-
-addEventListener("keydown",e=>{
-
-  keys[e.key]=true;
-
-});
-
-addEventListener("keyup",e=>{
-
-  keys[e.key]=false;
-
-});
-
-
-function buttonControl(id,key){
-
-  const el =
-    document.getElementById(id);
-
-  el.addEventListener("pointerdown",e=>{
-
-    e.preventDefault();
-    keys[key]=true;
-
-  });
-
-  el.addEventListener("pointerup",e=>{
-
-    e.preventDefault();
-    keys[key]=false;
-
-  });
-
-  el.addEventListener("pointercancel",()=>{
-    keys[key]=false;
-  });
-
-  el.addEventListener("pointerleave",()=>{
-    keys[key]=false;
-  });
-
-}
-
-buttonControl("leftBtn","ArrowLeft");
-buttonControl("rightBtn","ArrowRight");
-buttonControl("gasBtn","ArrowUp");
-buttonControl("brakeBtn","ArrowDown");
-buttonControl("turboBtn","Space");
-
-
-/* =========================================================
-   FÍSICA DEL AUTO
-========================================================= */
-
-function updateCar(car,input){
-
-  const accelerate =
-    input.up;
-
-  const brake =
-    input.down;
-
-  const left =
-    input.left;
-
-  const right =
-    input.right;
-
-  const turbo =
-    input.turbo &&
-    car.turbo > 0;
-
-  /*
-    ACELERACIÓN
-  */
-
-  if(accelerate){
-
-    car.speed +=
-      turbo ? .15 : .075;
-
-  }else{
-
-    car.speed *= .975;
-
-  }
-
-  if(brake){
-
-    car.speed *= .94;
-
-  }
-
-  /*
-    LÍMITES
-  */
-
-  const maxSpeed =
-    turbo ? 13 : 8;
-
-  car.speed =
-    Math.max(
-      -3,
-      Math.min(maxSpeed,car.speed)
-    );
-
-
-  /*
-    DIRECCIÓN MUCHO MÁS FUERTE
-  */
-
-  const steering =
-    (right-left);
-
-  if(Math.abs(car.speed)>.15){
-
-    const speedFactor =
-      Math.min(
-        1.7,
-        Math.abs(car.speed)/3
-      );
-
-    car.angle +=
-      steering *
-      .105 *
-      speedFactor;
-
-  }
-
-
-  /*
-    TURBO
-  */
-
-  if(turbo){
-
-    car.turbo -= .8;
-
-    if(car.turbo<0)
-      car.turbo=0;
-
-  }else{
-
-    car.turbo =
-      Math.min(
-        100,
-        car.turbo+.08
-      );
-
-  }
-
-
-  /*
-    MOVIMIENTO
-  */
-
-  car.x +=
-    Math.cos(car.angle) *
-    car.speed;
-
-  car.y +=
-    Math.sin(car.angle) *
-    car.speed;
-
-
-  /*
-    PROGRESO DE PISTA
-  */
-
-  let nearest=0;
-  let minDist=Infinity;
-
-  for(let i=0;i<track.length;i++){
-
-    const dx=car.x-track[i].x;
-    const dy=car.y-track[i].y;
-
-    const d=dx*dx+dy*dy;
-
-    if(d<minDist){
-
-      minDist=d;
-      nearest=i;
-
-    }
-
-  }
-
-  const newProgress =
-    nearest/track.length;
-
-  /*
-    Detectar vuelta al pasar
-    por el inicio de la pista.
-  */
-
-  if(
-    car.progress>.85 &&
-    newProgress<.15 &&
-    car.speed>1
-  ){
-
-    car.lap++;
-
-    if(car.lap>=TOTAL_LAPS){
-
-      car.finished=true;
-
-    }
-
-  }
-
-  car.progress=newProgress;
-
-}
-
-
-/* =========================================================
-   INPUT LOCAL
-========================================================= */
-
-function getInput(){
-
-  return {
-
-    left:
-      !!(keys.ArrowLeft || keys.a),
-
-    right:
-      !!(keys.ArrowRight || keys.d),
-
-    up:
-      !!(keys.ArrowUp || keys.w),
-
-    down:
-      !!(keys.ArrowDown || keys.s),
-
-    turbo:
-      !!(keys.Space)
-
-  };
-
-}
-
-
-/* =========================================================
-   LOOP
-========================================================= */
-
-let last=performance.now();
-
-function gameLoop(now){
-
-  if(!started) return;
-
-  const dt =
-    Math.min(
-      2,
-      (now-last)/16.67
-    );
-
-  last=now;
-
-
-  const me =
-    players[myId];
-
-  if(me){
-
-    const input =
-      getInput();
-
-    /*
-      HOST controla la simulación
-      para mantener una posición común.
-    */
-
-    if(host){
-
-      Object.values(players)
-        .forEach(car=>{
-
-          updateCar(
-            car,
-            car.id===me.id
-              ? input
-              : convertRemoteInput(car.input)
-          );
-
-        });
-
-      broadcastState();
-
-    }else{
-
-      sendInput(input);
-
-      /*
-        Movimiento local inmediato para
-        que los controles no tengan retraso.
-      */
-
-      updateCar(me,input);
-
-    }
-
-  }
-
-  render();
-
-  requestAnimationFrame(gameLoop);
-
-}
-
-
-function convertRemoteInput(input){
-
-  input=input||{};
-
-  return {
-
-    left:!!input.left,
-    right:!!input.right,
-    up:!!input.up,
-    down:!!input.down,
-    turbo:!!input.turbo
-
-  };
-
-}
-
-
-/* =========================================================
-   ENVIAR INPUT
-========================================================= */
-
-let lastInput=0;
-
-function sendInput(input){
-
-  const now=performance.now();
-
-  if(now-lastInput<30) return;
-
-  lastInput=now;
-
-  const conn =
-    connections.host;
-
-  if(conn && conn.open){
-
-    conn.send({
-      type:"INPUT",
-      input:input
-    });
-
-  }
-
-}
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
-let lastState=0;
-
-function broadcastState(){
-
-  const now=performance.now();
-
-  if(now-lastState<40) return;
-
-  lastState=now;
-
-  broadcastAll({
-
-    type:"STATE",
-    players:players
-
-  });
-
-}
-
-
-/* =========================================================
-   CÁMARA
-========================================================= */
-
-function camera(){
-
-  const me=players[myId];
-
-  if(!me){
-
-    return {
-      x:0,
-      y:0
-    };
-
-  }
-
-  return {
-
-    x:me.x,
-    y:me.y
-
-  };
-
-}
-
-
-/* =========================================================
-   DIBUJAR PISTA
-========================================================= */
-
-function drawTrack(cam){
-
-  ctx.save();
-
-  ctx.translate(
-    W/2/devicePixelRatio-cam.x,
-    H/2/devicePixelRatio-cam.y
-  );
-
-  /*
-    Fondo
-  */
-
-  ctx.fillStyle="#12001e";
-
-  ctx.fillRect(
-    cam.x-W,
-    cam.y-H,
-    W*2,
-    H*2
-  );
-
-
-  /*
-    Decoración
-  */
-
-  for(let i=0;i<80;i++){
-
-    const a=i*2.73;
-
-    const x=
-      Math.cos(a)*1500;
-
-    const y=
-      Math.sin(a)*900;
-
-    ctx.fillStyle =
-      i%2
-      ? "#ff149344"
-      : "#00eaff44";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      x,
-      y,
-      5+(i%5),
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
-
-  }
-
-
-  /*
-    PISTA EXTERIOR
-  */
-
-  drawTrackPath();
-
-  ctx.lineWidth=150;
-
-  ctx.strokeStyle="#ff00a8";
-
-  ctx.shadowBlur=35;
-  ctx.shadowColor="#ff00bb";
-
-  ctx.stroke();
-
-
-  /*
-    PISTA
-  */
-
-  ctx.shadowBlur=0;
-
-  ctx.lineWidth=130;
-
-  ctx.strokeStyle="#20213a";
-
-  ctx.stroke();
-
-
-  /*
-    BORDE AZUL
-  */
-
-  ctx.lineWidth=5;
-
-  ctx.strokeStyle="#00eaff";
-
-  ctx.stroke();
-
-
-  /*
-    LÍNEA CENTRAL
-  */
-
-  ctx.lineWidth=3;
-
-  ctx.strokeStyle="#f8e64f";
-
-  ctx.setLineDash([22,18]);
-
-  ctx.stroke();
-
-  ctx.setLineDash([]);
-
-
-  /*
-    META
-  */
-
-  const start=track[0];
-
-  ctx.fillStyle="#fff";
-
-  for(let i=0;i<10;i++){
-
-    ctx.fillStyle =
-      i%2 ? "#ff1493":"#ffffff";
-
-    ctx.fillRect(
-      start.x-55+i*11,
-      start.y-35,
-      11,
-      70
-    );
-
-  }
-
-  ctx.restore();
-
-}
-
-
-function drawTrackPath(){
-
-  ctx.beginPath();
-
-  track.forEach((p,i)=>{
-
-    if(i===0)
-      ctx.moveTo(p.x,p.y);
-    else
-      ctx.lineTo(p.x,p.y);
-
-  });
-
-  ctx.closePath();
-
-}
-
-
-/* =========================================================
-   DIBUJAR AUTOS
-========================================================= */
-
-function drawCar(car,cam){
-
-  const x =
-    W/2/devicePixelRatio +
-    car.x-cam.x;
-
-  const y =
-    H/2/devicePixelRatio +
-    car.y-cam.y;
-
-
-  ctx.save();
-
-  ctx.translate(x,y);
-
-  ctx.rotate(car.angle);
-
-
-  /*
-    SOMBRA
-  */
-
-  ctx.fillStyle="#0009";
-
-  ctx.beginPath();
-
-  ctx.ellipse(
-    0,
-    12,
-    25,
-    13,
-    0,
-    0,
-    Math.PI*2
-  );
-
-  ctx.fill();
-
-
-  /*
-    BRILLO DEL AUTO
-  */
-
-  ctx.shadowBlur=25;
-
-  ctx.shadowColor=car.color;
-
-  ctx.fillStyle=car.color;
-
-  ctx.beginPath();
-
-  ctx.roundRect(
-    -25,
-    -15,
-    50,
-    30,
-    9
-  );
-
-  ctx.fill();
-
-
-  /*
-    CABINA
-  */
-
-  ctx.shadowBlur=0;
-
-  ctx.fillStyle="#07111f";
-
-  ctx.beginPath();
-
-  ctx.roundRect(
-    -10,
-    -11,
-    23,
-    22,
-    7
-  );
-
-  ctx.fill();
-
-
-  /*
-    LUCES
-  */
-
-  ctx.fillStyle="#ffffff";
-
-  ctx.fillRect(
-    18,
-    -10,
-    6,
-    6
-  );
-
-  ctx.fillRect(
-    18,
-    4,
-    6,
-    6
-  );
-
-
-  /*
-    TURBO
-  */
-
-  if(car.speed>6){
-
-    ctx.fillStyle="#00eaff";
-
-    ctx.shadowBlur=20;
-
-    ctx.shadowColor="#00eaff";
-
-    ctx.beginPath();
-
-    ctx.moveTo(-27,-8);
-    ctx.lineTo(-55,0);
-    ctx.lineTo(-27,8);
-
-    ctx.fill();
-
-  }
-
-
-  ctx.restore();
-
-
-  /*
-    NOMBRE
-  */
-
-  ctx.font="bold 13px Arial";
-
-  ctx.textAlign="center";
-
-  ctx.fillStyle="#fff";
-
-  ctx.shadowBlur=8;
-  ctx.shadowColor=car.color;
-
-  ctx.fillText(
-    car.name,
-    x,
-    y-28
-  );
-
-  ctx.shadowBlur=0;
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function render(){
-
-  const cam=camera();
-
-  drawTrack(cam);
-
-  Object.values(players)
-    .forEach(car=>{
-      drawCar(car,cam);
-    });
-
-
-  const me=players[myId];
-
-  if(me){
-
-    document.getElementById("lap")
-      .textContent =
-      `${Math.min(me.lap+1,TOTAL_LAPS)}/${TOTAL_LAPS}`;
-
-    document.getElementById("speed")
-      .textContent =
-      Math.round(Math.abs(me.speed)*15);
-
-    const ranking =
-      Object.values(players)
-      .sort((a,b)=>{
-
-        const pa =
-          a.lap*1000+a.progress*1000;
-
-        const pb =
-          b.lap*1000+b.progress*1000;
-
-        return pb-pa;
-
-      });
-
-    const pos =
-      ranking.findIndex(
-        p=>p.id===me.id
-      )+1;
-
-    document.getElementById("position")
-      .textContent =
-      pos+"°";
-
-    document.getElementById("online")
-      .textContent =
-      Object.keys(players).length;
-
-
-    if(me.finished){
-
-      finishRace(pos);
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-function finishRace(position){
-
-  if(!started) return;
-
-  started=false;
-
-  document.getElementById("finish")
-    .style.display="flex";
-
-  document.getElementById("finalRank")
-    .textContent =
-    position+"°";
-
-  document.getElementById("winnerText")
-    .textContent =
-    position===1
-    ? "¡GANASTE LA CARRERA! 🏆"
-    : "¡BUENA CARRERA! 🏎️";
-
-}
-
-
-/* =========================================================
-   SEGURIDAD
-========================================================= */
-
-function escapeHTML(text){
-
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================================
-   AUTO-INICIO DE CONEXIÓN DEL HOST
-========================================================= */
-
-/*
-  Para usar códigos de sala reales necesitamos que el
-  anfitrión publique un Peer ID estable.
-
-  Creamos un ID basado en el código.
-*/
-
-const oldCreateRoom=createRoom;
-
-
-/*
-  Reemplazamos createRoom para usar ID de sala.
-*/
-
-createRoom=function(){
-
   myName=getName();
 
   host=true;
 
-  roomId=
-    Math.floor(
-      1000+Math.random()*9000
-    ).toString();
-
-  peer =
-    new Peer(
-      "turbo-kart-"+roomId
+  roomCode=
+    String(
+      Math.floor(
+        1000+
+        Math.random()*9000
+      )
     );
+
+  const peerId=
+    "flash-car-room-"+roomCode;
+
+  peer=new Peer(peerId);
 
   peer.on("open",id=>{
 
@@ -1814,12 +703,9 @@ createRoom=function(){
     players={};
 
     players[myId]=
-      createCar(
-        0,
-        myName
-      );
+      newCar(0,myName);
 
-    openLobby();
+    showLobby();
 
   });
 
@@ -1827,20 +713,20 @@ createRoom=function(){
   peer.on("connection",conn=>{
 
     if(
-      Object.keys(players).length
-      >=MAX_PLAYERS
+      Object.keys(players).length>=MAX_PLAYERS
     ){
 
       conn.on("open",()=>{
+
         conn.send({
           type:"FULL"
         });
 
         conn.close();
+
       });
 
       return;
-
     }
 
 
@@ -1851,11 +737,22 @@ createRoom=function(){
 
       if(data.type==="JOIN"){
 
+        if(
+          Object.keys(players).length>=MAX_PLAYERS
+        ){
+
+          conn.send({
+            type:"FULL"
+          });
+
+          return;
+        }
+
         const index=
           Object.keys(players).length;
 
         players[conn.peer]=
-          createCar(
+          newCar(
             index,
             data.name
           );
@@ -1896,14 +793,1402 @@ createRoom=function(){
 
     console.error(err);
 
+    if(err.type==="unavailable-id"){
+
+      alert(
+        "Ese código ya está ocupado. Crea otra sala."
+      );
+
+    }else{
+
+      alert(
+        "No se pudo crear la sala."
+      );
+
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   UNIRSE
+========================================================= */
+
+function joinRoom(){
+
+  myName=
+    document.getElementById("joinName")
+      .value.trim()||
+    "Jugador";
+
+  roomCode=
+    document.getElementById("joinCode")
+      .value.trim();
+
+  if(!/^\d{4}$/.test(roomCode)){
+
     alert(
-      "No se pudo crear la sala. " +
-      "Intenta nuevamente."
+      "Escribe un código de 4 números."
+    );
+
+    return;
+  }
+
+
+  peer=new Peer();
+
+
+  peer.on("open",id=>{
+
+    myId=id;
+
+    const hostId=
+      "flash-car-room-"+roomCode;
+
+    const conn=
+      peer.connect(
+        hostId,
+        {
+          reliable:true
+        }
+      );
+
+    connections.host=conn;
+
+
+    conn.on("open",()=>{
+
+      conn.send({
+
+        type:"JOIN",
+
+        name:myName
+
+      });
+
+    });
+
+
+    conn.on("data",data=>{
+
+      if(data.type==="LOBBY"){
+
+        players=data.players;
+
+        showLobby();
+
+      }
+
+
+      if(data.type==="START"){
+
+        players=data.players;
+
+        beginGame();
+
+      }
+
+
+      if(data.type==="STATE"){
+
+        players=data.players;
+
+      }
+
+
+      if(data.type==="FULL"){
+
+        alert(
+          "La sala ya tiene 4 jugadores."
+        );
+
+        location.reload();
+
+      }
+
+    });
+
+
+    conn.on("close",()=>{
+
+      alert(
+        "El anfitrión salió de la partida."
+      );
+
+      location.reload();
+
+    });
+
+  });
+
+
+  peer.on("error",()=>{
+
+    alert(
+      "No se encontró la sala. Comprueba el código."
     );
 
   });
 
-};
+}
+
+
+/* =========================================================
+   LOBBY
+========================================================= */
+
+function showLobby(){
+
+  document.getElementById("mainPanel")
+    .style.display="none";
+
+  document.getElementById("lobby")
+    .style.display="block";
+
+  document.getElementById("roomCode")
+    .textContent=roomCode;
+
+  updateLobby();
+
+}
+
+
+function updateLobby(){
+
+  const box=
+    document.getElementById("players");
+
+  box.innerHTML="";
+
+  Object.values(players)
+    .forEach((p,index)=>{
+
+      const div=
+        document.createElement("div");
+
+      div.className="player";
+
+      div.textContent=
+        `${index===0?"👑":"🏎️"} ${p.name}`;
+
+      box.appendChild(div);
+
+    });
+
+
+  document.getElementById("startButton")
+    .style.display=
+      host?"block":"none";
+
+}
+
+
+function broadcastLobby(){
+
+  updateLobby();
+
+  Object.values(connections)
+    .forEach(conn=>{
+
+      if(conn&&conn.open){
+
+        conn.send({
+
+          type:"LOBBY",
+
+          players:players
+
+        });
+
+      }
+
+    });
+
+}
+
+
+/* =========================================================
+   CARRERA
+========================================================= */
+
+function startRace(){
+
+  if(!host)return;
+
+  broadcastAll({
+
+    type:"START",
+
+    players:players
+
+  });
+
+  beginGame();
+
+}
+
+
+function beginGame(){
+
+  document.getElementById("menu")
+    .style.display="none";
+
+  document.getElementById("game")
+    .style.display="block";
+
+  gameStarted=true;
+
+  showCountdown();
+
+  requestAnimationFrame(loop);
+
+}
+
+
+function showCountdown(){
+
+  const el=
+    document.getElementById("countdown");
+
+  let n=3;
+
+  el.textContent=n;
+
+  const timer=
+    setInterval(()=>{
+
+      n--;
+
+      if(n>0){
+
+        el.textContent=n;
+
+      }else{
+
+        clearInterval(timer);
+
+        el.textContent="¡GO!";
+
+        setTimeout(()=>{
+
+          el.textContent="";
+
+        },700);
+
+      }
+
+    },850);
+
+}
+
+
+/* =========================================================
+   TECLADO
+========================================================= */
+
+const keys={};
+
+addEventListener("keydown",e=>{
+
+  keys[e.key.toLowerCase()]=true;
+
+  if(
+    e.key.startsWith("Arrow")||
+    e.key===" "
+  ){
+
+    e.preventDefault();
+
+  }
+
+});
+
+addEventListener("keyup",e=>{
+
+  keys[e.key.toLowerCase()]=false;
+
+});
+
+
+/* =========================================================
+   CONTROLES CELULAR
+========================================================= */
+
+function bindButton(id,key){
+
+  const button=
+    document.getElementById(id);
+
+  button.addEventListener(
+    "pointerdown",
+    e=>{
+
+      e.preventDefault();
+
+      keys[key]=true;
+
+    }
+  );
+
+  const release=()=>{
+
+    keys[key]=false;
+
+  };
+
+  button.addEventListener(
+    "pointerup",
+    release
+  );
+
+  button.addEventListener(
+    "pointercancel",
+    release
+  );
+
+  button.addEventListener(
+    "pointerleave",
+    release
+  );
+
+}
+
+bindButton("left","arrowleft");
+bindButton("right","arrowright");
+bindButton("up","arrowup");
+bindButton("down","arrowdown");
+bindButton("turbo"," ");
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+function getInput(){
+
+  return {
+
+    left:
+      !!(
+        keys["arrowleft"]||
+        keys["a"]
+      ),
+
+    right:
+      !!(
+        keys["arrowright"]||
+        keys["d"]
+      ),
+
+    up:
+      !!(
+        keys["arrowup"]||
+        keys["w"]
+      ),
+
+    down:
+      !!(
+        keys["arrowdown"]||
+        keys["s"]
+      ),
+
+    turbo:
+      !!keys[" "]
+
+  };
+
+}
+
+
+/* =========================================================
+   FÍSICA CORREGIDA
+========================================================= */
+
+function updateCar(car,input){
+
+  if(!input)
+    input={};
+
+
+  /*
+    ACELERACIÓN
+  */
+
+  if(input.up){
+
+    car.speed+=
+      input.turbo
+      ?0.16
+      :0.085;
+
+  }else{
+
+    car.speed*=0.982;
+
+  }
+
+
+  /*
+    FRENO / REVERSA
+  */
+
+  if(input.down){
+
+    if(car.speed>0){
+
+      car.speed*=0.91;
+
+    }else{
+
+      car.speed-=0.055;
+
+    }
+
+  }
+
+
+  /*
+    VELOCIDAD MÁXIMA
+  */
+
+  const maxSpeed=
+    input.turbo
+    ?13
+    :8.5;
+
+  car.speed=
+    Math.max(
+      -3,
+      Math.min(
+        maxSpeed,
+        car.speed
+      )
+    );
+
+
+  /*
+    =====================================================
+    GIRO SUAVIZADO
+    =====================================================
+
+    Antes el auto cambiaba de dirección demasiado rápido.
+
+    Ahora primero calculamos hacia dónde quiere girar
+    el jugador y después acercamos progresivamente
+    el volante a esa dirección.
+  */
+
+  let targetSteering=0;
+
+  if(input.left){
+
+    targetSteering=-1;
+
+  }
+
+  if(input.right){
+
+    targetSteering=1;
+
+  }
+
+
+  /*
+    Si no se pulsa nada, el volante vuelve
+    suavemente al centro.
+  */
+
+  car.steeringAngle +=
+    (
+      targetSteering-
+      car.steeringAngle
+    )*0.10;
+
+
+  /*
+    Giro solamente cuando el auto tiene velocidad.
+  */
+
+  if(Math.abs(car.speed)>0.12){
+
+    /*
+      Factor de giro progresivo.
+      A baja velocidad gira poco.
+      A velocidad alta gira un poco más.
+    */
+
+    const speedFactor=
+      Math.min(
+        1.30,
+        0.55+
+        Math.abs(car.speed)/8
+      );
+
+
+    /*
+      0.045 = giro suave.
+      Esto evita los cambios bruscos.
+    */
+
+    car.angle+=
+      car.steeringAngle*
+      0.045*
+      speedFactor;
+
+  }
+
+
+  /*
+    TURBO
+  */
+
+  if(input.turbo&&input.up){
+
+    car.turbo=
+      Math.max(
+        0,
+        car.turbo-0.9
+      );
+
+  }else{
+
+    car.turbo=
+      Math.min(
+        100,
+        car.turbo+0.12
+      );
+
+  }
+
+
+  /*
+    MOVIMIENTO
+  */
+
+  car.x+=
+    Math.cos(car.angle)*
+    car.speed;
+
+  car.y+=
+    Math.sin(car.angle)*
+    car.speed;
+
+
+  updateProgress(car);
+
+}
+
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+function updateProgress(car){
+
+  let nearest=0;
+
+  let nearestDist=Infinity;
+
+  for(
+    let i=0;
+    i<track.length;
+    i++
+  ){
+
+    const dx=
+      car.x-track[i].x;
+
+    const dy=
+      car.y-track[i].y;
+
+    const d=
+      dx*dx+dy*dy;
+
+    if(d<nearestDist){
+
+      nearestDist=d;
+
+      nearest=i;
+
+    }
+
+  }
+
+
+  const progress=
+    nearest/TRACK_POINTS;
+
+
+  /*
+    Vuelta completada.
+  */
+
+  if(
+    car.progress>0.88&&
+    progress<0.12&&
+    car.speed>1
+  ){
+
+    car.lap++;
+
+    if(car.lap>=LAPS){
+
+      car.finished=true;
+
+    }
+
+  }
+
+  car.progress=progress;
+
+}
+
+
+/* =========================================================
+   LOOP
+========================================================= */
+
+function loop(){
+
+  if(!gameStarted)
+    return;
+
+  const me=
+    players[myId];
+
+
+  if(host){
+
+    Object.values(players)
+      .forEach(car=>{
+
+        const input=
+          car.id===me?.id
+          ?getInput()
+          :car.input;
+
+        updateCar(
+          car,
+          input
+        );
+
+      });
+
+    sendState();
+
+  }else{
+
+    if(me){
+
+      const input=
+        getInput();
+
+      /*
+        Movimiento local inmediato.
+      */
+
+      updateCar(
+        me,
+        input
+      );
+
+      sendInput(input);
+
+    }
+
+  }
+
+
+  render();
+
+  requestAnimationFrame(loop);
+
+}
+
+
+/* =========================================================
+   COMUNICACIÓN
+========================================================= */
+
+let lastInput=0;
+
+function sendInput(input){
+
+  const now=
+    performance.now();
+
+  if(now-lastInput<25)
+    return;
+
+  lastInput=now;
+
+  const conn=
+    connections.host;
+
+  if(conn&&conn.open){
+
+    conn.send({
+
+      type:"INPUT",
+
+      input:input
+
+    });
+
+  }
+
+}
+
+
+let lastState=0;
+
+function sendState(){
+
+  const now=
+    performance.now();
+
+  if(now-lastState<35)
+    return;
+
+  lastState=now;
+
+  broadcastAll({
+
+    type:"STATE",
+
+    players:players
+
+  });
+
+}
+
+
+function broadcastAll(data){
+
+  Object.values(connections)
+    .forEach(conn=>{
+
+      if(conn&&conn.open){
+
+        conn.send(data);
+
+      }
+
+    });
+
+}
+
+
+/* =========================================================
+   CÁMARA
+========================================================= */
+
+function getCamera(){
+
+  const me=
+    players[myId];
+
+  if(!me){
+
+    return {
+      x:0,
+      y:0
+    };
+
+  }
+
+  return {
+
+    x:me.x,
+
+    y:me.y
+
+  };
+
+}
+
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+function drawBackground(cam){
+
+  ctx.fillStyle="#090012";
+
+  ctx.fillRect(
+    0,
+    0,
+    VW,
+    VH
+  );
+
+
+  const grid=100;
+
+  const startX=
+    -((cam.x%grid)+grid)%grid;
+
+  const startY=
+    -((cam.y%grid)+grid)%grid;
+
+
+  ctx.strokeStyle="#ff008c16";
+
+  ctx.lineWidth=1;
+
+  for(
+    let x=startX;
+    x<VW;
+    x+=grid
+  ){
+
+    ctx.beginPath();
+
+    ctx.moveTo(x,0);
+
+    ctx.lineTo(x,VH);
+
+    ctx.stroke();
+
+  }
+
+
+  ctx.strokeStyle="#00eaff12";
+
+  for(
+    let y=startY;
+    y<VH;
+    y+=grid
+  ){
+
+    ctx.beginPath();
+
+    ctx.moveTo(0,y);
+
+    ctx.lineTo(VW,y);
+
+    ctx.stroke();
+
+  }
+
+}
+
+
+/* =========================================================
+   PISTA
+========================================================= */
+
+function makeTrackPath(){
+
+  ctx.beginPath();
+
+  for(
+    let i=0;
+    i<track.length;
+    i++
+  ){
+
+    const p=track[i];
+
+    if(i===0){
+
+      ctx.moveTo(
+        p.x,
+        p.y
+      );
+
+    }else{
+
+      ctx.lineTo(
+        p.x,
+        p.y
+      );
+
+    }
+
+  }
+
+  ctx.closePath();
+
+}
+
+
+function drawTrack(cam){
+
+  ctx.save();
+
+  ctx.translate(
+    VW/2-cam.x,
+    VH/2-cam.y
+  );
+
+
+  /*
+    Brillo rosa exterior.
+  */
+
+  makeTrackPath();
+
+  ctx.lineWidth=180;
+
+  ctx.strokeStyle="#ff008c";
+
+  ctx.shadowColor="#ff008c";
+
+  ctx.shadowBlur=45;
+
+  ctx.stroke();
+
+
+  /*
+    Morado.
+  */
+
+  makeTrackPath();
+
+  ctx.lineWidth=160;
+
+  ctx.strokeStyle="#7200ff";
+
+  ctx.shadowBlur=0;
+
+  ctx.stroke();
+
+
+  /*
+    Asfalto.
+  */
+
+  makeTrackPath();
+
+  ctx.lineWidth=145;
+
+  ctx.strokeStyle="#24243a";
+
+  ctx.stroke();
+
+
+  /*
+    Borde cyan.
+  */
+
+  makeTrackPath();
+
+  ctx.lineWidth=4;
+
+  ctx.strokeStyle="#00eaff";
+
+  ctx.stroke();
+
+
+  /*
+    Línea central.
+  */
+
+  makeTrackPath();
+
+  ctx.lineWidth=3;
+
+  ctx.strokeStyle="#ffe83b";
+
+  ctx.setLineDash([
+    25,
+    22
+  ]);
+
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+
+  /*
+    META.
+  */
+
+  const p=track[0];
+
+  ctx.save();
+
+  ctx.translate(
+    p.x,
+    p.y
+  );
+
+  ctx.rotate(
+    Math.atan2(
+      track[1].y-p.y,
+      track[1].x-p.x
+    )
+  );
+
+
+  for(let i=0;i<12;i++){
+
+    ctx.fillStyle=
+      i%2
+      ?"#fff"
+      :"#ff1493";
+
+    ctx.fillRect(
+      -55+i*10,
+      -70,
+      10,
+      140
+    );
+
+  }
+
+  ctx.restore();
+
+
+  /*
+    Zonas turbo.
+  */
+
+  for(let i=0;i<8;i++){
+
+    const index=
+      Math.floor(
+        i*TRACK_POINTS/8
+      );
+
+    const q=track[index];
+
+    ctx.fillStyle="#00eaff55";
+
+    ctx.shadowColor="#00eaff";
+
+    ctx.shadowBlur=20;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      q.x,
+      q.y,
+      20,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  ctx.restore();
+
+}
+
+
+/* =========================================================
+   AUTO
+========================================================= */
+
+function drawCar(car,cam){
+
+  const x=
+    VW/2+
+    car.x-cam.x;
+
+  const y=
+    VH/2+
+    car.y-cam.y;
+
+
+  ctx.save();
+
+  ctx.translate(
+    x,
+    y
+  );
+
+  ctx.rotate(
+    car.angle
+  );
+
+
+  /*
+    Sombra.
+  */
+
+  ctx.fillStyle="#0009";
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    0,
+    14,
+    28,
+    15,
+    0,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+
+  /*
+    Carro.
+  */
+
+  ctx.shadowColor=
+    car.color;
+
+  ctx.shadowBlur=25;
+
+  ctx.fillStyle=
+    car.color;
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -28,
+    -16,
+    56,
+    32,
+    10
+  );
+
+  ctx.fill();
+
+
+  /*
+    Cabina.
+  */
+
+  ctx.shadowBlur=0;
+
+  ctx.fillStyle="#070714";
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -8,
+    -12,
+    25,
+    24,
+    7
+  );
+
+  ctx.fill();
+
+
+  /*
+    Faros.
+  */
+
+  ctx.fillStyle="#fff";
+
+  ctx.fillRect(
+    20,
+    -10,
+    7,
+    7
+  );
+
+  ctx.fillRect(
+    20,
+    3,
+    7,
+    7
+  );
+
+
+  /*
+    Turbo.
+  */
+
+  if(car.speed>6){
+
+    ctx.fillStyle="#00eaff";
+
+    ctx.shadowColor="#00eaff";
+
+    ctx.shadowBlur=25;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      -25,
+      -8
+    );
+
+    ctx.lineTo(
+      -65,
+      0
+    );
+
+    ctx.lineTo(
+      -25,
+      8
+    );
+
+    ctx.fill();
+
+  }
+
+
+  ctx.restore();
+
+
+  /*
+    Nombre.
+  */
+
+  ctx.textAlign="center";
+
+  ctx.font=
+    "bold 13px Arial";
+
+  ctx.fillStyle="#fff";
+
+  ctx.shadowColor=
+    car.color;
+
+  ctx.shadowBlur=10;
+
+  ctx.fillText(
+    car.name,
+    x,
+    y-30
+  );
+
+  ctx.shadowBlur=0;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+  const cam=
+    getCamera();
+
+  drawBackground(cam);
+
+  drawTrack(cam);
+
+
+  Object.values(players)
+    .forEach(car=>{
+
+      drawCar(
+        car,
+        cam
+      );
+
+    });
+
+
+  updateHUD();
+
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+function updateHUD(){
+
+  const me=
+    players[myId];
+
+  if(!me)
+    return;
+
+
+  document.getElementById("lap")
+    .textContent=
+      `${Math.min(
+        me.lap+1,
+        LAPS
+      )}/${LAPS}`;
+
+
+  document.getElementById("speed")
+    .textContent=
+      Math.round(
+        Math.abs(me.speed)*15
+      );
+
+
+  const ranking=
+    Object.values(players)
+      .slice()
+      .sort((a,b)=>{
+
+        const A=
+          a.lap*100000+
+          a.progress*100000;
+
+        const B=
+          b.lap*100000+
+          b.progress*100000;
+
+        return B-A;
+
+      });
+
+
+  const position=
+    ranking.findIndex(
+      p=>p.id===me.id
+    )+1;
+
+
+  document.getElementById("position")
+    .textContent=
+      position+"°";
+
+
+  document.getElementById("online")
+    .textContent=
+      Object.keys(players).length;
+
+
+  if(me.finished){
+
+    finish(position);
+
+  }
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+function finish(position){
+
+  if(!gameStarted)
+    return;
+
+  gameStarted=false;
+
+  document.getElementById("finish")
+    .style.display="flex";
+
+  document.getElementById("finalRank")
+    .textContent=
+      position+"°";
+
+
+  document.getElementById("finalText")
+    .textContent=
+      position===1
+      ? "¡GANASTE! 🏆⚡"
+      : "¡BUENA CARRERA! 🏎️";
+
+}
 
 </script>
 
